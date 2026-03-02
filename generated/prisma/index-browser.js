@@ -124,7 +124,8 @@ exports.Prisma.LinkScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   slug: 'slug',
-  destination: 'destination'
+  destination: 'destination',
+  clicks: 'clicks'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {

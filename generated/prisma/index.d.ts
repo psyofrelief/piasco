@@ -1292,10 +1292,12 @@ export namespace Prisma {
 
   export type LinkAvgAggregateOutputType = {
     id: number | null
+    clicks: number | null
   }
 
   export type LinkSumAggregateOutputType = {
     id: number | null
+    clicks: number | null
   }
 
   export type LinkMinAggregateOutputType = {
@@ -1303,6 +1305,7 @@ export namespace Prisma {
     userId: string | null
     slug: string | null
     destination: string | null
+    clicks: number | null
   }
 
   export type LinkMaxAggregateOutputType = {
@@ -1310,6 +1313,7 @@ export namespace Prisma {
     userId: string | null
     slug: string | null
     destination: string | null
+    clicks: number | null
   }
 
   export type LinkCountAggregateOutputType = {
@@ -1317,16 +1321,19 @@ export namespace Prisma {
     userId: number
     slug: number
     destination: number
+    clicks: number
     _all: number
   }
 
 
   export type LinkAvgAggregateInputType = {
     id?: true
+    clicks?: true
   }
 
   export type LinkSumAggregateInputType = {
     id?: true
+    clicks?: true
   }
 
   export type LinkMinAggregateInputType = {
@@ -1334,6 +1341,7 @@ export namespace Prisma {
     userId?: true
     slug?: true
     destination?: true
+    clicks?: true
   }
 
   export type LinkMaxAggregateInputType = {
@@ -1341,6 +1349,7 @@ export namespace Prisma {
     userId?: true
     slug?: true
     destination?: true
+    clicks?: true
   }
 
   export type LinkCountAggregateInputType = {
@@ -1348,6 +1357,7 @@ export namespace Prisma {
     userId?: true
     slug?: true
     destination?: true
+    clicks?: true
     _all?: true
   }
 
@@ -1442,6 +1452,7 @@ export namespace Prisma {
     userId: string | null
     slug: string
     destination: string
+    clicks: number
     _count: LinkCountAggregateOutputType | null
     _avg: LinkAvgAggregateOutputType | null
     _sum: LinkSumAggregateOutputType | null
@@ -1468,6 +1479,7 @@ export namespace Prisma {
     userId?: boolean
     slug?: boolean
     destination?: boolean
+    clicks?: boolean
     user?: boolean | Link$userArgs<ExtArgs>
   }, ExtArgs["result"]["link"]>
 
@@ -1476,6 +1488,7 @@ export namespace Prisma {
     userId?: boolean
     slug?: boolean
     destination?: boolean
+    clicks?: boolean
     user?: boolean | Link$userArgs<ExtArgs>
   }, ExtArgs["result"]["link"]>
 
@@ -1484,6 +1497,7 @@ export namespace Prisma {
     userId?: boolean
     slug?: boolean
     destination?: boolean
+    clicks?: boolean
     user?: boolean | Link$userArgs<ExtArgs>
   }, ExtArgs["result"]["link"]>
 
@@ -1492,9 +1506,10 @@ export namespace Prisma {
     userId?: boolean
     slug?: boolean
     destination?: boolean
+    clicks?: boolean
   }
 
-  export type LinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "slug" | "destination", ExtArgs["result"]["link"]>
+  export type LinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "slug" | "destination" | "clicks", ExtArgs["result"]["link"]>
   export type LinkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Link$userArgs<ExtArgs>
   }
@@ -1515,6 +1530,7 @@ export namespace Prisma {
       userId: string | null
       slug: string
       destination: string
+      clicks: number
     }, ExtArgs["result"]["link"]>
     composites: {}
   }
@@ -1943,6 +1959,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"Link", 'String'>
     readonly slug: FieldRef<"Link", 'String'>
     readonly destination: FieldRef<"Link", 'String'>
+    readonly clicks: FieldRef<"Link", 'Int'>
   }
     
 
@@ -6717,7 +6734,8 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     slug: 'slug',
-    destination: 'destination'
+    destination: 'destination',
+    clicks: 'clicks'
   };
 
   export type LinkScalarFieldEnum = (typeof LinkScalarFieldEnum)[keyof typeof LinkScalarFieldEnum]
@@ -6867,6 +6885,7 @@ export namespace Prisma {
     userId?: StringNullableFilter<"Link"> | string | null
     slug?: StringFilter<"Link"> | string
     destination?: StringFilter<"Link"> | string
+    clicks?: IntFilter<"Link"> | number
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
@@ -6875,6 +6894,7 @@ export namespace Prisma {
     userId?: SortOrderInput | SortOrder
     slug?: SortOrder
     destination?: SortOrder
+    clicks?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -6886,6 +6906,7 @@ export namespace Prisma {
     NOT?: LinkWhereInput | LinkWhereInput[]
     userId?: StringNullableFilter<"Link"> | string | null
     destination?: StringFilter<"Link"> | string
+    clicks?: IntFilter<"Link"> | number
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id" | "slug">
 
@@ -6894,6 +6915,7 @@ export namespace Prisma {
     userId?: SortOrderInput | SortOrder
     slug?: SortOrder
     destination?: SortOrder
+    clicks?: SortOrder
     _count?: LinkCountOrderByAggregateInput
     _avg?: LinkAvgOrderByAggregateInput
     _max?: LinkMaxOrderByAggregateInput
@@ -6909,6 +6931,7 @@ export namespace Prisma {
     userId?: StringNullableWithAggregatesFilter<"Link"> | string | null
     slug?: StringWithAggregatesFilter<"Link"> | string
     destination?: StringWithAggregatesFilter<"Link"> | string
+    clicks?: IntWithAggregatesFilter<"Link"> | number
   }
 
   export type AccountWhereInput = {
@@ -7161,6 +7184,7 @@ export namespace Prisma {
   export type LinkCreateInput = {
     slug: string
     destination: string
+    clicks?: number
     user?: UserCreateNestedOneWithoutLinksInput
   }
 
@@ -7169,11 +7193,13 @@ export namespace Prisma {
     userId?: string | null
     slug: string
     destination: string
+    clicks?: number
   }
 
   export type LinkUpdateInput = {
     slug?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
+    clicks?: IntFieldUpdateOperationsInput | number
     user?: UserUpdateOneWithoutLinksNestedInput
   }
 
@@ -7182,6 +7208,7 @@ export namespace Prisma {
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type LinkCreateManyInput = {
@@ -7189,11 +7216,13 @@ export namespace Prisma {
     userId?: string | null
     slug: string
     destination: string
+    clicks?: number
   }
 
   export type LinkUpdateManyMutationInput = {
     slug?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type LinkUncheckedUpdateManyInput = {
@@ -7201,6 +7230,7 @@ export namespace Prisma {
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type AccountCreateInput = {
@@ -7521,10 +7551,12 @@ export namespace Prisma {
     userId?: SortOrder
     slug?: SortOrder
     destination?: SortOrder
+    clicks?: SortOrder
   }
 
   export type LinkAvgOrderByAggregateInput = {
     id?: SortOrder
+    clicks?: SortOrder
   }
 
   export type LinkMaxOrderByAggregateInput = {
@@ -7532,6 +7564,7 @@ export namespace Prisma {
     userId?: SortOrder
     slug?: SortOrder
     destination?: SortOrder
+    clicks?: SortOrder
   }
 
   export type LinkMinOrderByAggregateInput = {
@@ -7539,10 +7572,12 @@ export namespace Prisma {
     userId?: SortOrder
     slug?: SortOrder
     destination?: SortOrder
+    clicks?: SortOrder
   }
 
   export type LinkSumOrderByAggregateInput = {
     id?: SortOrder
+    clicks?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -7845,6 +7880,14 @@ export namespace Prisma {
     set?: string
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type UserUpdateOneWithoutLinksNestedInput = {
     create?: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
     connectOrCreate?: UserCreateOrConnectWithoutLinksInput
@@ -7853,14 +7896,6 @@ export namespace Prisma {
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLinksInput, UserUpdateWithoutLinksInput>, UserUncheckedUpdateWithoutLinksInput>
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -8456,12 +8491,14 @@ export namespace Prisma {
   export type LinkCreateWithoutUserInput = {
     slug: string
     destination: string
+    clicks?: number
   }
 
   export type LinkUncheckedCreateWithoutUserInput = {
     id?: number
     slug: string
     destination: string
+    clicks?: number
   }
 
   export type LinkCreateOrConnectWithoutUserInput = {
@@ -8558,6 +8595,7 @@ export namespace Prisma {
     userId?: StringNullableFilter<"Link"> | string | null
     slug?: StringFilter<"Link"> | string
     destination?: StringFilter<"Link"> | string
+    clicks?: IntFilter<"Link"> | number
   }
 
   export type AccountCreateManyUserInput = {
@@ -8584,6 +8622,7 @@ export namespace Prisma {
     id?: number
     slug: string
     destination: string
+    clicks?: number
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -8649,18 +8688,21 @@ export namespace Prisma {
   export type LinkUpdateWithoutUserInput = {
     slug?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type LinkUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     slug?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type LinkUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     slug?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
 
