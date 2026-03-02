@@ -55,14 +55,19 @@ export default async function Page() {
               key={link.id}
               className="transition-hover flex justify-between rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md"
             >
-              <div className="flex flex-col gap-y-1">
+              <a href={link.slug} className="flex flex-col gap-y-1">
                 <span className="font-semibold text-black">
-                  p-s.co/{link.slug}
+                  {process.env.NEXT_PUBLIC_BASE_URL?.replace(
+                    /^https?:\/\//,
+                    "",
+                  )}
+                  /{link.slug}
                 </span>
                 <span className="truncate text-sm text-gray-500">
                   {link.destination}
                 </span>
-              </div>
+              </a>
+              <p className="my-auto text-black">{link.clicks} Clicks</p>
               <form action={deleteLink.bind(null, link.id.toString())}>
                 <button
                   type="submit"
