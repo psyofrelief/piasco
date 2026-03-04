@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Fragment_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -27,9 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${fragmentMono.variable} antialiased`}
+        className={`${dmSans.variable} ${fragmentMono.variable} tracking-[-0.03em] antialiased`}
       >
-        <Navbar />
         {children}
       </body>
     </html>
