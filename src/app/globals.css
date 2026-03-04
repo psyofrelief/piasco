@@ -35,6 +35,7 @@
   --color-accent-muted: hsl(var(--accent-muted));
 
   --color-outline: hsl(var(--outline));
+  --color-popover: hsl(var(--popover));
   --color-destructive: hsl(var(--destructive));
   --color-success: hsl(var(--success));
 
