@@ -8,7 +8,7 @@
     --foreground: 25 5% 4%;
     --foreground-secondary: 0 0% 34%;
 
-    --popover: 0 0% 94%;
+    --popover: 25 30% 96%;
 
     --outline: 25 5% 70%;
     --accent: 25 100% 55%;
@@ -45,6 +45,7 @@
   --text-lg: 1.5rem; /* 24px */
   --text-xl: 2rem; /* 32px */
   --text-2xl: 2.5rem; /* 40px */
+  --text-3xl: 3rem; /* 48px */
 
   --spacing-2xs: 4px;
   --spacing-xs: 8px;

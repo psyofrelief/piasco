@@ -25,20 +25,15 @@ export async function upsertLink(formData: FormData) {
   revalidatePath("/dashboard");
 }
 
-export async function deleteLink(id: string) {
-  const session = await auth();
-  if (!session?.user?.id) throw new Error("Unauthorized");
+export async function deleteLink(formData: FormData) {
+  const id = formData.get("id") as string;
 
   await prisma.link.delete({
-    where: {
-      id: parseInt(id),
-      userId: session.user.id,
-    },
+    where: { id: parseInt(id) },
   });
 
   revalidatePath("/dashboard");
 }
-
 export async function getLinkBySlug(slug: string) {
   return await prisma.link.findUnique({
     where: { slug },

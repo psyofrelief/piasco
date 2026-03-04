@@ -16,7 +16,7 @@ export default function Button({
   const variants = {
     primary: "bg-foreground text-background hover:opacity-60",
     outline:
-      "border border-outline border-dotted text-foreground hover:opacity-60",
+      "border border-inherit border-dotted text-foreground-secondary hover:opacity-60",
   };
 
   return (

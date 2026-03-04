@@ -3,12 +3,15 @@ import Logo from "../../logo/Logo";
 import SidebarLink from "../sidebar/SidebarLink";
 import Button from "../../ui/Button";
 import Heading from "@/components/ui/Heading";
+import Link from "next/link";
 
 export default function Sidebar() {
   return (
     <aside className="p-lg border-r-outline flex min-w-100 flex-col justify-between border-r border-dashed">
-      <div className="gap-y-lg flex flex-col">
-        <Logo />
+      <div className="gap-y-xl flex flex-col">
+        <Link href={"/"}>
+          <Logo />
+        </Link>
         <div className="gap-y-lg flex flex-col">
           {DASHBOARD_LINKS.map((e) => (
             <div key={e.category} className="gap-y-md flex flex-col">
