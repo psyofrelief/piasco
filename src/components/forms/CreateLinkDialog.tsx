@@ -22,6 +22,10 @@ import { cn } from "@/lib/utils";
 interface CreateLinkDialogProps {
   label?: string;
   className?: string;
+  initialData?: {
+    destination: string;
+    slug: string;
+  };
 }
 
 const linkSchema = z.object({
@@ -39,8 +43,10 @@ type LinkValues = z.infer<typeof linkSchema>;
 export default function CreateLinkDialog({
   label = "Shorten URL",
   className,
+  initialData,
 }: CreateLinkDialogProps) {
   const [open, setOpen] = useState(false);
+  const isEditing = !!initialData;
 
   const {
     register,
@@ -49,6 +55,7 @@ export default function CreateLinkDialog({
     formState: { errors, isSubmitting },
   } = useForm<LinkValues>({
     resolver: zodResolver(linkSchema),
+    defaultValues: initialData,
   });
 
   const onSubmit: SubmitHandler<LinkValues> = async (data) => {
@@ -58,8 +65,10 @@ export default function CreateLinkDialog({
         slug: data.slug,
       });
 
-      toast.success("Link saved successfully!");
-      reset();
+      toast.success(isEditing ? "Link updated!" : "Link saved!");
+
+      if (!isEditing) reset();
+
       setOpen(false);
     } catch (error) {
       toast.error(
@@ -71,12 +80,16 @@ export default function CreateLinkDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className={cn("w-full sm:w-fit", className)}>{label}</Button>
+        <Button className={cn("w-full sm:w-fit", className)}>
+          {isEditing && label === "Shorten URL" ? "Edit" : label}
+        </Button>
       </DialogTrigger>
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create New Link</DialogTitle>
+          <DialogTitle>
+            {isEditing ? "Edit Link" : "Create New Link"}
+          </DialogTitle>
         </DialogHeader>
 
         <form
@@ -104,7 +117,6 @@ export default function CreateLinkDialog({
               <span className="text-foreground-secondary text-sm whitespace-nowrap select-none">
                 {process.env.NEXT_PUBLIC_BASE_URL || "p-s.co"}/
               </span>
-
               <input
                 {...register("slug")}
                 id="slug"
@@ -126,7 +138,7 @@ export default function CreateLinkDialog({
               Cancel
             </Button>
             <Button type="submit" className="w-full" isLoading={isSubmitting}>
-              Create Link
+              {isEditing ? "Save Changes" : "Create Link"}
             </Button>
           </div>
         </form>

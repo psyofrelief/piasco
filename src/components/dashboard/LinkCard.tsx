@@ -1,6 +1,7 @@
 import { deleteLink } from "@/app/dashboard/actions";
 import Link from "next/link";
 import CopyButton from "./CopyButton";
+import CreateLinkDialog from "../forms/CreateLinkDialog";
 
 interface Props {
   id: string | number;
@@ -16,12 +17,12 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
         <div className="bg-foreground/40 aspect-square size-9" />
         <div className="gap-y-xs flex flex-col">
           <a
-            href={`${process.env.NEXT_PUBLIC_BASE_URL}/${slug}`}
+            href={`${process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/${slug}`}
             rel="noreferrer"
             target="_blank"
             className="leading-none font-medium"
           >
-            {process.env.NEXT_PUBLIC_BASE_URL}/{slug}
+            {process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/{slug}
           </a>
           <p className="text-foreground-secondary leading-none">
             {destination}
@@ -42,6 +43,10 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
           </button>
         </form>
         <CopyButton url={`${process.env.NEXT_PUBLIC_BASE_URL}/${slug}`} />
+        <CreateLinkDialog
+          initialData={{ slug, destination }}
+          className="text-foreground-secondary hover:text-foreground h-auto w-auto border-none bg-transparent p-0 font-mono tracking-tighter uppercase"
+        />
       </div>
     </li>
   );
