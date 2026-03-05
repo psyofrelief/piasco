@@ -6,25 +6,40 @@ import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 import { SettingsValues } from "@/lib/data/schemas/settingsSchema";
 
-export async function upsertLink(formData: FormData) {
+export async function upsertLink(data: { destination: string; slug?: string }) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
 
-  const destination = formData.get("destination") as string;
-  const slug =
-    (formData.get("slug") as string) || Math.random().toString(36).substring(7);
+  const userId = session.user.id;
+  const destination = data.destination;
 
-  await prisma.link.upsert({
-    where: { slug: slug },
-    update: { destination },
-    create: {
-      destination,
-      slug,
-      userId: session.user.id,
-    },
+  const slug = data.slug?.trim() || Math.random().toString(36).substring(2, 8);
+
+  const existingLink = await prisma.link.findUnique({
+    where: { slug },
   });
 
+  if (existingLink) {
+    if (existingLink.userId !== userId) {
+      throw new Error("This short code is already taken by another user.");
+    }
+
+    await prisma.link.update({
+      where: { slug },
+      data: { destination },
+    });
+  } else {
+    await prisma.link.create({
+      data: {
+        slug,
+        destination,
+        userId,
+      },
+    });
+  }
+
   revalidatePath("/dashboard");
+  return { success: true };
 }
 
 export async function deleteLink(formData: FormData) {

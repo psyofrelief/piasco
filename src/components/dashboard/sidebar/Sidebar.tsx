@@ -3,10 +3,10 @@
 import { DASHBOARD_LINKS } from "@/lib/data/navigation";
 import Logo from "../../logo/Logo";
 import SidebarLink from "../sidebar/SidebarLink";
-import Button from "../../ui/Button";
 import Heading from "@/components/ui/Heading";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import CreateLinkDialog from "@/components/forms/CreateLinkDialog";
 
 export default function Sidebar() {
   return (
@@ -42,7 +42,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <Button className="w-full">Shorten URL</Button>
+      <CreateLinkDialog className="w-full!" />
     </aside>
   );
 }

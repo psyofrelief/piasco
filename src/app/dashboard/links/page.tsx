@@ -4,8 +4,8 @@ import { redirect } from "next/navigation";
 import Panel from "@/components/dashboard/Panel";
 import Headline from "@/components/ui/Headline";
 import LinkCard from "@/components/dashboard/LinkCard";
-import Button from "@/components/ui/Button";
 import NoLinks from "@/components/dashboard/NoLinks";
+import CreateLinkDialog from "@/components/forms/CreateLinkDialog";
 
 export default async function Page() {
   const session = await auth();
@@ -22,7 +22,7 @@ export default async function Page() {
         <>
           <div className="flex items-end justify-between">
             <Headline>Your Links</Headline>
-            <Button>CREATE NEW</Button>
+            <CreateLinkDialog label="Create Link" />
           </div>
           <ul className="border-b-outline flex flex-col border-b border-dotted">
             {links.map((l) => (
