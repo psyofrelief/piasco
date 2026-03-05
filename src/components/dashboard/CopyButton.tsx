@@ -1,6 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
+import CopyIcon from "../icons/CopyIcon";
 
 export default function CopyButton({ url }: { url: string }) {
   const handleCopy = async () => {
@@ -16,9 +17,9 @@ export default function CopyButton({ url }: { url: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className="size-md bg-accent-muted flex items-center justify-center text-white transition-opacity hover:opacity-80"
+      className="bg-accent/60 p-xs rounded-full"
     >
-      CX
+      <CopyIcon />
     </button>
   );
 }

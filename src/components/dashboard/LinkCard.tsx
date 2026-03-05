@@ -2,6 +2,10 @@ import { deleteLink } from "@/app/dashboard/actions";
 import Link from "next/link";
 import CopyButton from "./CopyButton";
 import CreateLinkDialog from "../forms/CreateLinkDialog";
+import QrCodeIcon from "../icons/QrCodeIcon";
+import ClicksIcon from "../icons/ClicksIcon";
+import TrashIcon from "../icons/TrashIcon";
+import EditIcon from "../icons/EditIcon";
 
 interface Props {
   id: string | number;
@@ -24,29 +28,35 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
           >
             {process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/{slug}
           </a>
-          <p className="text-foreground-secondary leading-none">
-            {destination}
-          </p>
+          <p className="text-foreground leading-none">{destination}</p>
         </div>
       </div>
-      <div className="gap-x-md text-foreground-secondary flex items-center font-mono tracking-tighter uppercase">
-        <p>{clicks} Clicks</p>
-        <Link href={"/dashboard/qr"}>QR Code</Link>
+      <div className="gap-x-md text-foreground flex items-center">
+        <p className="gap-x-xs flex items-center">
+          <ClicksIcon />
+          {clicks} Clicks
+        </p>
+        <CreateLinkDialog
+          initialData={{ slug, destination }}
+          className="text-foreground bg-transparent! p-0! font-sans normal-case"
+          icon={<EditIcon />}
+        />
         <form action={deleteLink}>
           <input type="hidden" name="id" value={id} />
 
           <button
             type="submit"
-            className="hover:text-destructive cursor-pointer uppercase transition-colors"
+            className="hover:text-destructive hover:fill-destructive fill-foreground gap-x-xs flex cursor-pointer items-center transition-colors"
           >
+            <TrashIcon />
             Delete
           </button>
         </form>
+
+        <Link className="ml-sm" href={"/dashboard/qr"}>
+          <QrCodeIcon />
+        </Link>
         <CopyButton url={`${process.env.NEXT_PUBLIC_BASE_URL}/${slug}`} />
-        <CreateLinkDialog
-          initialData={{ slug, destination }}
-          className="text-foreground-secondary hover:text-foreground h-auto w-auto border-none bg-transparent p-0 font-mono tracking-tighter uppercase"
-        />
       </div>
     </li>
   );

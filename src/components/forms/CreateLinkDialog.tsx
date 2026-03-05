@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 interface CreateLinkDialogProps {
   label?: string;
   className?: string;
+  icon?: ReactNode;
   initialData?: {
     destination: string;
     slug: string;
@@ -43,6 +44,7 @@ type LinkValues = z.infer<typeof linkSchema>;
 export default function CreateLinkDialog({
   label = "Shorten URL",
   className,
+  icon,
   initialData,
 }: CreateLinkDialogProps) {
   const [open, setOpen] = useState(false);
@@ -66,9 +68,7 @@ export default function CreateLinkDialog({
       });
 
       toast.success(isEditing ? "Link updated!" : "Link saved!");
-
       if (!isEditing) reset();
-
       setOpen(false);
     } catch (error) {
       toast.error(
@@ -80,8 +80,9 @@ export default function CreateLinkDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className={cn("w-full sm:w-fit", className)}>
-          {isEditing && label === "Shorten URL" ? "Edit" : label}
+        <Button className={cn("gap-x-xs w-full sm:w-fit", className)}>
+          {icon && icon}
+          <span>{isEditing && label === "Shorten URL" ? "Edit" : label}</span>
         </Button>
       </DialogTrigger>
 

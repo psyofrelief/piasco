@@ -7,6 +7,7 @@ import Heading from "@/components/ui/Heading";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import CreateLinkDialog from "@/components/forms/CreateLinkDialog";
+import LogoutIcon from "@/components/icons/LogoutIcon";
 
 export default function Sidebar() {
   return (
@@ -25,14 +26,20 @@ export default function Sidebar() {
               <ul className="gap-y-xs flex flex-col">
                 {e.links.map((l, idx) =>
                   l.label !== "Logout" ? (
-                    <SidebarLink label={l.label} href={l.href} key={idx + 1} />
+                    <SidebarLink
+                      label={l.label}
+                      href={l.href}
+                      icon={l.icon}
+                      key={idx + 1}
+                    />
                   ) : (
                     <li
                       key={l.label}
                       onClick={() => signOut({ callbackUrl: "/" })}
-                      className="p-sm hover:bg-popover flex flex-1 cursor-pointer font-mono uppercase transition-colors"
+                      className="p-sm hover:bg-popover gap-x-sm flex flex-1 cursor-pointer items-center font-mono uppercase transition-colors"
                     >
-                      {l.label}
+                      <LogoutIcon />
+                      <span>{l.label}</span>
                     </li>
                   ),
                 )}

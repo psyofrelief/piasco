@@ -8,6 +8,9 @@ import LinkCard from "@/components/dashboard/LinkCard";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import NoLinks from "@/components/dashboard/NoLinks";
+import LinkIcon from "@/components/icons/LinkIcon";
+import ClickIcon from "@/components/icons/ClickIcon";
+import CTRIcon from "@/components/icons/CTRIcon";
 
 export default async function Page() {
   const session = await auth();
@@ -26,9 +29,9 @@ export default async function Page() {
   const ctrAverage = totalLinks > 0 ? (totalClicks / totalLinks).toFixed(1) : 0;
 
   const stats = [
-    { label: "Links created", value: totalLinks },
-    { label: "Total clicks", value: totalClicks },
-    { label: "CTR average", value: `${ctrAverage}%` },
+    { label: "Links created", value: totalLinks, icon: <LinkIcon /> },
+    { label: "Total clicks", value: totalClicks, icon: <ClickIcon /> },
+    { label: "CTR average", value: `${ctrAverage}%`, icon: <CTRIcon /> },
   ];
 
   return (
