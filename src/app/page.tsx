@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar/Navbar";
+import FeaturesOverviewSection from "@/components/sections/FeaturesOverview";
 import Hero from "@/components/sections/Hero";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
         <Navbar />
         <Hero />
       </div>
+      <FeaturesOverviewSection />
     </main>
   );
 }
