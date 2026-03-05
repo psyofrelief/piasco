@@ -10,6 +10,7 @@ type DashboardCategory = {
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
+  { label: "Dashboard", href: "/dashboard" },
   { label: "API", href: "/api-docs" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -26,7 +27,7 @@ export const DASHBOARD_LINKS: DashboardCategory[] = [
   {
     category: "ACCOUNT",
     links: [
-      { label: "Account", href: "/dashboard/my-account" },
+      { label: "Settings", href: "/dashboard/settings" },
       { label: "Logout", href: "logout" },
     ],
   },

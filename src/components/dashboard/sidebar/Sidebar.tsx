@@ -1,9 +1,12 @@
+"use client";
+
 import { DASHBOARD_LINKS } from "@/lib/data/navigation";
 import Logo from "../../logo/Logo";
 import SidebarLink from "../sidebar/SidebarLink";
 import Button from "../../ui/Button";
 import Heading from "@/components/ui/Heading";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 export default function Sidebar() {
   return (
@@ -19,14 +22,15 @@ export default function Sidebar() {
                 className="border-b-outline pb-xs border-b border-dashed"
                 label={e.category}
               />
-              <ul className="flex flex-col">
+              <ul className="gap-y-xs flex flex-col">
                 {e.links.map((l, idx) =>
                   l.label !== "Logout" ? (
                     <SidebarLink label={l.label} href={l.href} key={idx + 1} />
                   ) : (
                     <li
                       key={l.label}
-                      className="p-sm flex flex-1 font-mono uppercase transition-colors"
+                      onClick={() => signOut({ callbackUrl: "/" })}
+                      className="p-sm hover:bg-popover flex flex-1 cursor-pointer font-mono uppercase transition-colors"
                     >
                       {l.label}
                     </li>

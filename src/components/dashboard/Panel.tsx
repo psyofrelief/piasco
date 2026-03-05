@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface Props {
   children: React.ReactNode;
@@ -14,6 +15,17 @@ export default function Panel({ children, className = "" }: Props) {
       )}
     >
       {children}
+
+      <div className="pointer-events-none absolute inset-0 z-1 flex items-end justify-center">
+        <Image
+          src="/images/gradient.png"
+          alt=""
+          width={1000}
+          height={1000}
+          className="h-100 w-full object-bottom"
+          priority
+        />
+      </div>
     </section>
   );
 }

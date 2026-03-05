@@ -1,19 +1,19 @@
-import CreateLinkForm from "@/components/forms/CreateLinkForm";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { deleteLink } from "./actions";
 import Panel from "@/components/dashboard/Panel";
 import Headline from "@/components/ui/Headline";
 import StatCard from "@/components/StatCard";
 import LinkCard from "@/components/dashboard/LinkCard";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 
 export default async function Page() {
   const session = await auth();
-  if (!session?.user?.id) redirect("/api/auth/signin");
+
+  if (!session?.user?.id) {
+    redirect("/auth/login");
+  }
 
   const links = await prisma.link.findMany({
     where: { userId: session.user.id },
@@ -62,17 +62,6 @@ export default async function Page() {
             />
           ))}
         </ul>
-      </div>
-
-      <div className="pointer-events-none absolute inset-0 z-1 flex items-end justify-center">
-        <Image
-          src="/images/gradient.png"
-          alt=""
-          width={1000}
-          height={1000}
-          className="h-100 w-full object-bottom"
-          priority
-        />
       </div>
     </Panel>
   );

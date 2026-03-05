@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fragment_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/Toaster";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -29,6 +30,8 @@ export default function RootLayout({
         className={`${dmSans.variable} ${fragmentMono.variable} tracking-[-0.03em] antialiased`}
       >
         {children}
+
+        <Toaster />
       </body>
     </html>
   );
