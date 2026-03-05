@@ -7,6 +7,7 @@ import StatCard from "@/components/StatCard";
 import LinkCard from "@/components/dashboard/LinkCard";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import NoLinks from "@/components/dashboard/NoLinks";
 
 export default async function Page() {
   const session = await auth();
@@ -41,28 +42,32 @@ export default async function Page() {
         </ul>
       </div>
 
-      <div className="gap-y-lg flex flex-col">
-        <div className="flex items-end justify-between">
-          <Headline>Latest Links</Headline>
+      {links.length > 0 ? (
+        <div className="gap-y-lg flex flex-col">
+          <div className="flex items-end justify-between">
+            <Headline>Latest Links</Headline>
 
-          <Link href="/dashboard/links" className="flex size-fit">
-            <Button className="flex-1" variant="outline">
-              View All Links
-            </Button>
-          </Link>
+            <Link href="/dashboard/links" className="flex size-fit">
+              <Button className="flex-1" variant="outline">
+                View All Links
+              </Button>
+            </Link>
+          </div>
+          <ul className="border-b-outline flex flex-col border-b border-dotted">
+            {links.map((l) => (
+              <LinkCard
+                id={l.id}
+                slug={l.slug}
+                destination={l.destination}
+                clicks={l.clicks}
+                key={l.id}
+              />
+            ))}
+          </ul>
         </div>
-        <ul className="border-b-outline flex flex-col border-b border-dotted">
-          {links.map((l) => (
-            <LinkCard
-              id={l.id}
-              slug={l.slug}
-              destination={l.destination}
-              clicks={l.clicks}
-              key={l.id}
-            />
-          ))}
-        </ul>
-      </div>
+      ) : (
+        <NoLinks />
+      )}
     </Panel>
   );
 }

@@ -10,7 +10,7 @@ export default function QRGeneratorForm() {
   const [destination, setDestination] = useState("https://p-s.co");
   const [fgColor, setFgColor] = useState("#000000");
   const [bgColor, setBgColor] = useState("#ffffff");
-  const [showLogo, setShowLogo] = useState(true); // Toggle State
+  const [showLogo, setShowLogo] = useState(true);
   const qrRef = useRef<SVGSVGElement>(null);
 
   const downloadQR = () => {
@@ -34,9 +34,9 @@ export default function QRGeneratorForm() {
   };
 
   return (
-    <div className="flex size-full justify-between gap-8">
+    <div className="flex w-full justify-between gap-8">
       {/* Controls */}
-      <div className="gap-y-xl flex w-full flex-col">
+      <div className="gap-y-xl flex h-fit w-full flex-col">
         <div className="gap-xs flex flex-col">
           <Label htmlFor="destination">URL:</Label>
           <Input
@@ -78,9 +78,9 @@ export default function QRGeneratorForm() {
             id="logoToggle"
             checked={showLogo}
             onChange={(e) => setShowLogo(e.target.checked)}
-            className="size-4 accent-black"
+            className="size-sm accent-accent"
           />
-          <Label htmlFor="logoToggle" className="cursor-pointer">
+          <Label htmlFor="logoToggle" className="cursor-pointer text-sm">
             Include Branding Logo
           </Label>
         </div>
@@ -89,29 +89,29 @@ export default function QRGeneratorForm() {
           Download PNG
         </Button>
       </div>
-
       {/* Preview */}
-      <QRCodeSVG
-        ref={qrRef}
-        value={destination}
-        bgColor={bgColor}
-        fgColor={fgColor}
-        level="H" // Error correction level 'H' is required when using logos
-        marginSize={4}
-        className="border-outline max-size-90 aspect-square w-full border border-dotted"
-        imageSettings={
-          showLogo
-            ? {
-                src: "/images/logo-icon.png", // Path to your logo icon
-                x: undefined,
-                y: undefined,
-                height: 32,
-                width: 32,
-                excavate: true, // This cuts out the QR dots behind the logo
-              }
-            : undefined
-        }
-      />
+      <div className="border-outline flex h-full border border-dotted">
+        <QRCodeSVG
+          ref={qrRef}
+          value={destination}
+          size={undefined}
+          bgColor={bgColor}
+          fgColor={fgColor}
+          level="H"
+          marginSize={4}
+          className="aspect-square h-full w-auto"
+          imageSettings={
+            showLogo
+              ? {
+                  src: "/images/logo-icon.png",
+                  height: 16,
+                  width: 16,
+                  excavate: true,
+                }
+              : undefined
+          }
+        />
+      </div>{" "}
     </div>
   );
 }

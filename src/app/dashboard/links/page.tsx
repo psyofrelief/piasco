@@ -5,6 +5,7 @@ import Panel from "@/components/dashboard/Panel";
 import Headline from "@/components/ui/Headline";
 import LinkCard from "@/components/dashboard/LinkCard";
 import Button from "@/components/ui/Button";
+import NoLinks from "@/components/dashboard/NoLinks";
 
 export default async function Page() {
   const session = await auth();
@@ -17,21 +18,27 @@ export default async function Page() {
 
   return (
     <Panel className="gap-y-lg relative flex flex-col">
-      <div className="flex items-end justify-between">
-        <Headline>Your Links</Headline>
-        <Button>CREATE NEW</Button>
-      </div>
-      <ul className="border-b-outline flex flex-col border-b border-dotted">
-        {links.map((l) => (
-          <LinkCard
-            id={l.id}
-            slug={l.slug}
-            destination={l.destination}
-            clicks={l.clicks}
-            key={l.id}
-          />
-        ))}
-      </ul>
+      {links.length > 0 ? (
+        <>
+          <div className="flex items-end justify-between">
+            <Headline>Your Links</Headline>
+            <Button>CREATE NEW</Button>
+          </div>
+          <ul className="border-b-outline flex flex-col border-b border-dotted">
+            {links.map((l) => (
+              <LinkCard
+                id={l.id}
+                slug={l.slug}
+                destination={l.destination}
+                clicks={l.clicks}
+                key={l.id}
+              />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <NoLinks />
+      )}
     </Panel>
   );
 }
