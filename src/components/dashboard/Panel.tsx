@@ -18,7 +18,7 @@ export default function Panel({ children, className = "" }: Props) {
 
       <div className="pointer-events-none absolute inset-0 z-1 flex items-end justify-center">
         <Image
-          src="/images/gradient.png"
+          src="/images/gradient.webp"
           alt=""
           width={1000}
           height={1000}

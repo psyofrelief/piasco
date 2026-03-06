@@ -5,13 +5,13 @@ import Section from "../ui/Section";
 import Button from "../ui/Button";
 import Image from "next/image";
 
-export default function Hero() {
+export default function HeroSection() {
   return (
     <Section className="border-outline gap-y-xl relative flex min-h-150 flex-col items-center justify-center overflow-hidden border border-dashed text-center">
       <div className="pointer-events-none absolute inset-0 -z-1 flex items-end justify-center">
         <Image
-          src="/images/gradient.png"
-          alt=""
+          src="/images/gradient.webp"
+          alt="gradient background"
           width={1000}
           height={1000}
           className="h-150 w-full object-bottom"
