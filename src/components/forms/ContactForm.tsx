@@ -10,6 +10,7 @@ import TextArea from "@/components/ui/TextArea";
 import FormMessage from "@/components/ui/FormMessage";
 import { useState } from "react";
 import { toast } from "sonner";
+import { sendContactMessage } from "@/app/actions";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -42,23 +43,9 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_MAIL_ACCESS_TOKEN,
-          ...values,
-        }),
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        toast.success("Message sent successfully!");
-        reset();
-      }
+      await sendContactMessage(values);
+      toast.success("Message sent successfully!");
+      reset();
     } catch (error) {
       console.error("Submission error", error);
       toast.error("Failed to send message. Please try again later.");
