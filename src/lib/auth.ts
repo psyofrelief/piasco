@@ -3,11 +3,13 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { loginSchema } from "@/lib/data/schemas/authSchema";
+import { PrismaClient } from "../../generated/prisma";
+import { authConfig } from "./auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   adapter: PrismaAdapter(prisma as PrismaClient),
   session: { strategy: "jwt" },
   providers: [
@@ -15,37 +17,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Credentials({
       async authorize(credentials) {
         const validatedFields = loginSchema.safeParse(credentials);
+        if (!validatedFields.success) return null;
 
-        if (validatedFields.success) {
-          const { email, password } = validatedFields.data;
+        const { email, password } = validatedFields.data;
+        const user = await prisma.user.findUnique({ where: { email } });
 
-          const user = await prisma.user.findUnique({
-            where: { email },
-          });
+        if (!user || !user.password) return null;
 
-          if (!user || !user.password) return null;
-
-          const passwordsMatch = await bcrypt.compare(password, user.password);
-
-          if (passwordsMatch) return user;
-        }
+        const passwordsMatch = await bcrypt.compare(password, user.password);
+        if (passwordsMatch) return user;
 
         return null;
       },
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id as string;
-      }
-      return session;
-    },
-  },
 });
