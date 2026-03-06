@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar/Navbar";
+import FeaturesDetailedSection from "@/components/sections/FeaturesDetailed.tsx";
 import FeaturesOverviewSection from "@/components/sections/FeaturesOverview";
 import Hero from "@/components/sections/Hero";
 
@@ -10,6 +11,7 @@ export default function Home() {
         <Hero />
       </div>
       <FeaturesOverviewSection />
+      <FeaturesDetailedSection />
     </main>
   );
 }

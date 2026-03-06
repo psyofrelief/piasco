@@ -1,0 +1,53 @@
+import { cn } from "@/lib/utils";
+import Button from "@/components/ui/Button";
+import Image from "next/image";
+import Link from "next/link";
+import Headline from "./ui/Headline";
+
+interface Props {
+  title: string;
+  description: string;
+  imgSrc: string;
+  imgAlt: string;
+  hasCta?: boolean;
+  isReversed?: boolean;
+}
+
+export default function FeatureModule({
+  title,
+  description,
+  imgSrc,
+  imgAlt,
+  hasCta = false,
+  isReversed = false,
+}: Props) {
+  return (
+    <li className="gap-xl grid grid-cols-2 items-center">
+      {/* Image Container */}
+      <div
+        className={cn(
+          "bg-popover relative aspect-square w-full overflow-hidden",
+          isReversed ? "md:order-last" : "md:order-first",
+        )}
+      >
+        <Image src={imgSrc} alt={imgAlt} fill className="object-cover" />
+      </div>
+
+      {/* Content Container */}
+      <div className="gap-y-md flex flex-col">
+        <div className="gap-y-sm flex flex-col">
+          <Headline>{title}</Headline>
+          <p className="text-foreground-secondary leading-tight">
+            {description}
+          </p>
+        </div>
+
+        {hasCta && (
+          <Link href="/auth/register" className="flex size-fit">
+            <Button className="flex-1">Get Started</Button>
+          </Link>
+        )}
+      </div>
+    </li>
+  );
+}
