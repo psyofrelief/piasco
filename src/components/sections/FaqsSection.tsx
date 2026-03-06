@@ -10,7 +10,7 @@ export default function FaqsSection() {
   const pathname = usePathname();
 
   return (
-    <Section className="mx-auto grid max-w-250 grid-cols-2">
+    <Section id="faqs" className="mx-auto grid max-w-250 grid-cols-2">
       <div className="gap-y-sm flex flex-col justify-between">
         <header className="gap-y-xs flex flex-col">
           <Heading label="Frequently Asked Questions" />

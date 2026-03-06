@@ -39,3 +39,37 @@ export const DASHBOARD_LINKS: DashboardCategory[] = [
     ],
   },
 ] as const;
+
+type FooterLinkItem = {
+  label: string;
+  href: string;
+  trueLink?: boolean;
+};
+
+type FooterCategory = {
+  category: string;
+  links: FooterLinkItem[];
+};
+export const FOOTER_LINKS: FooterCategory[] = [
+  {
+    category: "Sitemap",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "FAQS", href: "/#faqs" },
+    ],
+  },
+  {
+    category: "Company",
+    links: [
+      { label: "Developer API", href: "/api-docs" },
+      { label: "Contact Us", href: "/contcct" },
+    ],
+  },
+  {
+    category: "Legal",
+    links: [
+      { label: "Terms Of Use", href: "/terms-of-use" },
+      { label: "Privacy Policy", href: "privacy-policy" },
+    ],
+  },
+] as const;

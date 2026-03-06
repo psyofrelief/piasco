@@ -9,7 +9,10 @@ export default async function Navbar() {
   const session = await auth();
 
   return (
-    <nav className="sm:px-md px-sm py-sm text-foreground border-outline z-4 flex w-full justify-between border-x border-dashed">
+    <nav
+      id="top"
+      className="sm:px-md px-sm py-sm text-foreground border-outline z-4 flex w-full justify-between border-x border-dashed"
+    >
       <div className="gap-x-md flex items-center">
         <Logo />
         <ul className="group/nav gap-x-sm hidden sm:flex">
