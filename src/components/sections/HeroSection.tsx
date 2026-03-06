@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <Section className="border-outline gap-y-xl relative flex min-h-150 flex-col items-center justify-center overflow-hidden border border-dashed text-center">
+    <Section className="border-outline gap-y-xl relative mx-auto flex min-h-150 max-w-250 flex-col items-center justify-center overflow-hidden border border-dashed text-center">
       <div className="pointer-events-none absolute inset-0 -z-1 flex items-end justify-center">
         <Image
           src="/images/gradient.webp"

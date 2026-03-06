@@ -1,50 +1,68 @@
-import { cn } from "@/lib/utils";
-
-interface LogoIconProps {
-  variant?: "default" | "outline";
-  className?: string;
-}
-
-export default function LogoIcon({
-  variant = "default",
-  className,
-}: LogoIconProps) {
+export default function LogoIcon({ isFooter = false }: { isFooter?: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="37"
-      height="37"
+      width="33"
+      height="33"
       fill="none"
-      className={cn(
-        variant === "outline" && "border-outline border",
-        className,
-      )}
+      className={isFooter ? "border-outline border" : ""}
     >
       <g clipPath="url(#a)">
-        <path
-          className={variant === "default" ? "fill-black" : "fill-transparent"}
-          d="M0 0h33v33H0z"
+        <path fill="#1A1A1A" d="M0 0h33v33H0z" />
+        <rect
+          width="16.212"
+          height="16.212"
+          x="16.5"
+          y="5.036"
+          stroke="#fffdfa"
+          strokeWidth=".794"
+          rx="8.106"
+          transform="rotate(45 16.5 5.036)"
         />
-
-        {[16.5, 19.676, 22.851, 26.026, 29.201].map((x, i) => (
-          <rect
-            key={i}
-            width="16.212"
-            height="16.212"
-            x={x}
-            y="5.036"
-            className={
-              variant === "default" ? "stroke-white" : "stroke-outline"
-            }
-            strokeWidth=".794"
-            rx="8.106"
-            transform={`rotate(45 ${x} 5.036)`}
-          />
-        ))}
+        <rect
+          width="16.212"
+          height="16.212"
+          x="19.676"
+          y="5.036"
+          stroke="#fffdfa"
+          strokeWidth=".794"
+          rx="8.106"
+          transform="rotate(45 19.676 5.036)"
+        />
+        <rect
+          width="16.212"
+          height="16.212"
+          x="22.851"
+          y="5.036"
+          stroke="#fffdfa"
+          strokeWidth=".794"
+          rx="8.106"
+          transform="rotate(45 22.85 5.036)"
+        />
+        <rect
+          width="16.212"
+          height="16.212"
+          x="26.026"
+          y="5.036"
+          stroke="#fffdfa"
+          strokeWidth=".794"
+          rx="8.106"
+          transform="rotate(45 26.026 5.036)"
+        />
+        <rect
+          width="16.212"
+          height="16.212"
+          x="29.201"
+          y="5.036"
+          stroke="#fffdfa"
+          strokeWidth=".794"
+          rx="8.106"
+          transform="rotate(45 29.201 5.036)"
+        />
       </g>
       <defs>
         <clipPath id="a">
-          <path d="M0 0h33v33H0z" />
+          <path fill="#00ff00" d="M0 0h33v33H0z" />
         </clipPath>
       </defs>
     </svg>

@@ -35,12 +35,12 @@ export default function FeatureModule({
 
       {/* Content Container */}
       <div className="gap-y-md flex flex-col">
-        <div className="gap-y-sm flex flex-col">
+        <header className="gap-y-xs flex flex-col">
           <Headline>{title}</Headline>
           <p className="text-foreground-secondary leading-tight">
             {description}
           </p>
-        </div>
+        </header>
 
         {hasCta && (
           <Link href="/auth/register" className="flex size-fit">

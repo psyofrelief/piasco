@@ -56,6 +56,8 @@
   --spacing-2xl: 64px;
   --spacing-3xl: 100px;
 
+  --spacing-screen-minus-navbar: calc(100vh - 71px);
+
   --radius-sm: 8px;
   --radius-md: 16px;
 

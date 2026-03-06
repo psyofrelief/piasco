@@ -11,7 +11,7 @@ export default async function Navbar() {
   return (
     <nav
       id="top"
-      className="sm:px-md px-sm py-sm text-foreground border-outline z-4 flex w-full justify-between border-x border-dashed"
+      className="sm:px-md px-sm py-sm text-foreground border-outline z-4 mx-auto flex w-full max-w-250 justify-between border-x border-dashed"
     >
       <div className="gap-x-md flex items-center">
         <Logo />

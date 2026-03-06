@@ -29,8 +29,7 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${fragmentMono.variable} tracking-[-0.03em] antialiased`}
       >
-        {children}
-
+        <main className="flex flex-col">{children}</main>
         <Toaster />
       </body>
     </html>

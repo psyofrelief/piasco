@@ -8,10 +8,7 @@ export default function Logo({ isFooter = false }: { isFooter?: boolean }) {
       href={"/"}
       className={`gap-xs flex items-center ${isFooter ? "flex-col sm:flex-row" : ""}`}
     >
-      <LogoIcon
-        variant={isFooter ? "outline" : "default"}
-        className={isFooter ? "text-outline" : "text-white"}
-      />
+      <LogoIcon isFooter={isFooter} />
       <LogoText />
     </Link>
   );
