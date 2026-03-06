@@ -53,7 +53,10 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
           </button>
         </form>
 
-        <Link className="ml-sm" href={"/dashboard/qr"}>
+        <Link
+          className="ml-sm"
+          href={`/dashboard/qr?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/${slug}`)}`}
+        >
           <QrCodeIcon />
         </Link>
         <CopyButton url={`${process.env.NEXT_PUBLIC_BASE_URL}/${slug}`} />

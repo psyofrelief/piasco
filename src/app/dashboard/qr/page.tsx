@@ -1,6 +1,7 @@
 import Panel from "@/components/dashboard/Panel";
 import Headline from "@/components/ui/Headline";
 import QRGeneratorForm from "@/components/forms/QRGeneratorForm";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
@@ -11,8 +12,11 @@ export default function Page() {
           Enjoy the benefits of sharing via QR codes.
         </p>
       </header>
-
-      <QRGeneratorForm />
+      <Suspense
+        fallback={<div className="bg-popover min-h-32 animate-pulse" />}
+      >
+        <QRGeneratorForm />
+      </Suspense>
     </Panel>
   );
 }
