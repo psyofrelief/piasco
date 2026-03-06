@@ -3,6 +3,7 @@ import FeaturesDetailedSection from "@/components/sections/FeaturesDetailed.tsx"
 import FeaturesOverviewSection from "@/components/sections/FeaturesOverview";
 import Hero from "@/components/sections/Hero";
 import StatsSection from "@/components/sections/StatsSection";
+import TestimonialSection from "@/components/sections/TestimonialSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <FeaturesOverviewSection />
       <FeaturesDetailedSection />
       <StatsSection />
+      <TestimonialSection />
     </main>
   );
 }
