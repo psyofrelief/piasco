@@ -6,21 +6,24 @@ const { auth } = NextAuth(authConfig);
 export default auth((req) => {
   const { pathname } = req.nextUrl;
   const isLoggedIn = !!req.auth;
-  const isVerified = !!req.auth?.user?.emailVerified;
 
+  const isVerified = !!req.auth?.user?.emailVerified;
+  const isOAuthUser = !req.auth?.user?.hasPassword;
+
+  const isCleared = isVerified || isOAuthUser;
   if (pathname.startsWith("/dashboard")) {
     if (!isLoggedIn) {
       return Response.redirect(new URL("/auth/login", req.nextUrl));
     }
 
     const isVerifyPage = pathname === "/auth/verify";
-    if (!isVerified && !isVerifyPage) {
+    if (!isCleared && !isVerifyPage) {
       return Response.redirect(new URL("/auth/verify", req.nextUrl));
     }
   }
 
   if (pathname.startsWith("/auth") && isLoggedIn) {
-    if (isVerified) {
+    if (isCleared) {
       return Response.redirect(new URL("/dashboard", req.nextUrl));
     }
   }

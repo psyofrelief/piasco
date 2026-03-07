@@ -27,8 +27,7 @@ export default function LoginForm() {
   const onSubmit: SubmitHandler<LoginValues> = async (data) => {
     try {
       await loginUser(data);
-      toast.success("Welcome back!");
-
+      toast.success("Login successful");
       router.refresh();
 
       router.push("/dashboard");

@@ -10,8 +10,8 @@ export async function sendContactMessage(values: {
   const { name, email, message } = values;
 
   const { error } = await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: "info@faried.net",
+    from: "Piasco Contact Form <hello@p-s.co>",
+    to: "hello@p-s.co",
     replyTo: email,
     subject: `New contact message from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,

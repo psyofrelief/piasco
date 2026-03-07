@@ -15,11 +15,10 @@ export default function DashboardLayout({
 
   useEffect(() => {
     if (isJustVerified) {
-      // This tells Auth.js to re fetch session from the server
-      // which will now include the new emailVerified date
       update();
     }
   }, [isJustVerified, update]);
+
   return (
     <div className="flex min-h-screen">
       <Sidebar />

@@ -13,6 +13,8 @@ import { AuthError } from "next-auth";
 import { randomBytes, createHash } from "crypto";
 import { resend } from "@/lib/resend";
 
+const EMAIL_FROM = "Piasco <hello@p-s.co>";
+
 export async function loginUser(values: LoginValues) {
   const validatedFields = loginSchema.safeParse(values);
   if (!validatedFields.success) throw new Error("Invalid fields");
@@ -24,7 +26,7 @@ export async function loginUser(values: LoginValues) {
 
     const user = await prisma.user.findUnique({ where: { email } });
 
-    if (user && !user.emailVerified) {
+    if (user && user.password && !user.emailVerified) {
       await sendVerificationEmail(email);
     }
 
@@ -77,14 +79,14 @@ export async function requestPasswordReset(email: string) {
   const link = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/reset?token=${token}&email=${encodeURIComponent(email)}`;
 
   const { error } = await resend.emails.send({
-    from: "onboarding@resend.dev",
+    from: EMAIL_FROM,
     to: email,
     subject: "Reset your password",
     text: `Click this link to reset your password: ${link}`,
   });
+
   if (error) {
-    console.error("Resend Error:", error);
-    throw new Error("Failed to send email");
+    throw new Error("Failed to send reset email");
   }
 
   return { success: true };
@@ -126,7 +128,17 @@ export async function sendVerificationEmail(email: string) {
   });
 
   const verifyUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify?token=${token}`;
-  console.log("Verification URL:", verifyUrl);
+
+  const { error } = await resend.emails.send({
+    from: EMAIL_FROM,
+    to: email,
+    subject: "Verify your email",
+    text: `Welcome to Piasco! Please verify your email by clicking here: ${verifyUrl}`,
+  });
+
+  if (error) {
+    throw new Error("Failed to send verification email");
+  }
 
   return { success: true };
 }
