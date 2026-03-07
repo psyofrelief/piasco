@@ -22,8 +22,6 @@ export default auth((req) => {
   if (pathname.startsWith("/auth") && isLoggedIn) {
     if (isVerified) {
       return Response.redirect(new URL("/dashboard", req.nextUrl));
-    } else {
-      return Response.redirect(new URL("/", req.nextUrl));
     }
   }
 });

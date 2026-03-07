@@ -160,7 +160,8 @@ exports.Prisma.UserScalarFieldEnum = {
 };
 
 exports.Prisma.VerificationTokenScalarFieldEnum = {
-  identifier: 'identifier',
+  id: 'id',
+  email: 'email',
   token: 'token',
   expires: 'expires'
 };

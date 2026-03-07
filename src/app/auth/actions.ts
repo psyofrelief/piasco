@@ -15,19 +15,18 @@ import { resend } from "@/lib/resend";
 
 export async function loginUser(values: LoginValues) {
   const validatedFields = loginSchema.safeParse(values);
-
-  if (!validatedFields.success) {
-    throw new Error("Invalid fields");
-  }
+  if (!validatedFields.success) throw new Error("Invalid fields");
 
   const { email, password } = validatedFields.data;
 
   try {
-    await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
+    await signIn("credentials", { email, password, redirect: false });
+
+    const user = await prisma.user.findUnique({ where: { email } });
+
+    if (user && !user.emailVerified) {
+      await sendVerificationEmail(email);
+    }
 
     return { success: "Logged in" };
   } catch (error) {
@@ -45,30 +44,20 @@ export async function loginUser(values: LoginValues) {
 
 export async function registerUser(values: RegisterValues) {
   const validatedFields = registerSchema.safeParse(values);
-
-  if (!validatedFields.success) {
-    throw new Error("Invalid fields");
-  }
+  if (!validatedFields.success) throw new Error("Invalid fields");
 
   const { email, password, name } = validatedFields.data;
+  const existingUser = await prisma.user.findUnique({ where: { email } });
 
-  const existingUser = await prisma.user.findUnique({
-    where: { email },
-  });
-
-  if (existingUser) {
-    throw new Error("Email already in use");
-  }
+  if (existingUser) throw new Error("Email already in use");
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
   await prisma.user.create({
-    data: {
-      name,
-      email,
-      password: hashedPassword,
-    },
+    data: { name, email, password: hashedPassword },
   });
+
+  await sendVerificationEmail(email);
 
   return { success: "User created" };
 }
@@ -124,4 +113,41 @@ export async function resetPasswordAction({ email, token, password }: any) {
   });
 
   await prisma.passwordResetToken.delete({ where: { token: hashedToken } });
+}
+
+export async function sendVerificationEmail(email: string) {
+  const token = crypto.randomUUID();
+  const expires = new Date(Date.now() + 3600 * 1000);
+
+  await prisma.verificationToken.deleteMany({ where: { email } });
+
+  await prisma.verificationToken.create({
+    data: { email, token, expires },
+  });
+
+  const verifyUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify?token=${token}`;
+  console.log("Verification URL:", verifyUrl);
+
+  return { success: true };
+}
+
+export async function verifyToken(token: string) {
+  const verificationToken = await prisma.verificationToken.findUnique({
+    where: { token },
+  });
+
+  if (!verificationToken || verificationToken.expires < new Date()) {
+    return { success: false };
+  }
+
+  await prisma.user.update({
+    where: { email: verificationToken.email },
+    data: { emailVerified: new Date() },
+  });
+
+  await prisma.verificationToken.delete({
+    where: { token },
+  });
+
+  return { success: true };
 }

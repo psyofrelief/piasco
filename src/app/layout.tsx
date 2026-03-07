@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fragment_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/Toaster";
+import NextAuthProvider from "@/components/providers/SessionProvider";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -29,8 +30,10 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${fragmentMono.variable} tracking-[-0.03em] antialiased`}
       >
-        <main className="flex flex-col">{children}</main>
-        <Toaster />
+        <NextAuthProvider>
+          <main className="flex flex-col">{children}</main>
+          <Toaster />
+        </NextAuthProvider>
       </body>
     </html>
   );
