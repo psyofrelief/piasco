@@ -3,7 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Label from "@/components/ui/Label";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
@@ -22,20 +22,21 @@ export default function LoginForm() {
   } = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
   });
+  const { update } = useSession();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<LoginValues> = async (data) => {
     try {
       await loginUser(data);
       toast.success("Login successful");
-      router.refresh();
-
+      await update();
       router.push("/dashboard");
-    } catch (error: unknown) {
-      if (error instanceof Error) toast.error(error.message);
-      else toast.error("An unexpected error occurred");
+    } catch (error) {
+      toast.error("An unexpected error occurred");
+      console.error(error);
     }
   };
+
   const handleGoogleLogin = () => {
     signIn("google", { callbackUrl: "/dashboard" });
   };

@@ -10,7 +10,7 @@ import LogoutIcon from "@/components/icons/LogoutIcon";
 
 export default function Sidebar() {
   return (
-    <aside className="p-lg border-r-outline flex min-w-100 flex-col justify-between border-r border-dashed">
+    <aside className="p-lg border-r-outline hidden min-w-100 flex-col justify-between border-r border-dashed lg:flex">
       <div className="gap-y-xl flex flex-col">
         <Logo />
         <div className="gap-y-lg flex flex-col">

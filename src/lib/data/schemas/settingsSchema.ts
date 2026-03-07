@@ -9,7 +9,7 @@ export const settingsSchema = z.object({
     .min(8, "Min 8 characters")
     .optional()
     .or(z.literal("")),
-  isOAuth: z.boolean().optional(), // Ensure this line exists
+  isOAuth: z.boolean().optional(),
 });
 
 export type SettingsValues = z.infer<typeof settingsSchema>;

@@ -22,7 +22,7 @@ export default function FeatureModule({
   isReversed = false,
 }: Props) {
   return (
-    <li className="gap-xl grid grid-cols-2 items-center">
+    <li className="gap-x-xl gap-y-sm grid grid-cols-1 items-center sm:grid-cols-2">
       {/* Image Container */}
       <div
         className={cn(

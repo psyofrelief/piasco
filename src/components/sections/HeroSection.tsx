@@ -3,22 +3,11 @@ import Heading from "../ui/Heading";
 import Headline from "../ui/Headline";
 import Section from "../ui/Section";
 import Button from "../ui/Button";
-import Image from "next/image";
+import GradientImage from "../ui/GradientImage";
 
 export default function HeroSection() {
   return (
-    <Section className="border-outline gap-y-xl relative mx-auto flex min-h-150 max-w-250 flex-col items-center justify-center overflow-hidden border border-dashed text-center">
-      <div className="pointer-events-none absolute inset-0 -z-1 flex items-end justify-center">
-        <Image
-          src="/images/gradient.webp"
-          alt="gradient background"
-          width={1000}
-          height={1000}
-          className="h-150 w-full object-bottom"
-          priority
-        />
-      </div>
-
+    <Section className="border-outline gap-y-xl relative mx-auto flex min-h-150 flex-col items-center justify-center overflow-hidden border-y border-dashed text-center sm:max-w-250 sm:border">
       <div className="gap-y-sm flex flex-col items-center justify-center">
         <Heading label="More than 1000 links shortened" />
         <Headline>Link Management, Refined.</Headline>
@@ -34,6 +23,7 @@ export default function HeroSection() {
         </Link>
         <p className="text-foreground-secondary">No credit card required</p>
       </div>
+      <GradientImage />
     </Section>
   );
 }

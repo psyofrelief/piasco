@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 import { registerUser } from "@/app/auth/actions";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function RegisterForm() {
   const {
@@ -27,13 +28,15 @@ export default function RegisterForm() {
       isOAuth: false,
     },
   });
+
   const router = useRouter();
+  const { update } = useSession();
 
   const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
     try {
       await registerUser(data);
       toast.success("Account created! Please log in.");
-
+      await update();
       router.push("/auth/login");
     } catch (error: unknown) {
       if (error instanceof Error) toast.error(error.message);

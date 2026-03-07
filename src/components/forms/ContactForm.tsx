@@ -60,7 +60,7 @@ export default function ContactForm() {
       className="gap-y-md flex w-full flex-col items-end"
     >
       {/* Email and Name Fields */}
-      <div className="gap-sm flex w-full items-center">
+      <div className="gap-x-sm gap-y-md flex w-full flex-col items-center sm:flex-row">
         <div className="gap-y-xs flex w-full flex-col">
           <Label htmlFor="firstname">Name</Label>
           <Input

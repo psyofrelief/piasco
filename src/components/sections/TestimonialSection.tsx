@@ -8,16 +8,16 @@ export default function TestimonialSection() {
       data-theme="dark"
       className="bg-background text-foreground flex w-full justify-center"
     >
-      <Section className="gap-x-xl px-sm border-x-outline flex w-full max-w-250 items-center border-x border-dashed">
+      <Section className="gap-x-xl px-sm border-x-outline gap-y-md flex w-full max-w-250 flex-col items-center border-x border-dashed md:flex-row">
         <Image
           src={"/images/testimonial.webp"}
           alt="testimonial profile image"
           height={512}
           width={512}
-          className=""
+          className="w-full md:w-fit"
         />
         <header className="gap-y-sm flex flex-col">
-          <Headline className="text-lg leading-tight">
+          <Headline className="text-lg leading-[1.1em] sm:max-w-200 sm:text-xl">
             We treat our links as part of our branding, not just a utility.
             Managing redirects at this scale while maintaining custom slugs is
             finally seamless.

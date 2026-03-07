@@ -1,6 +1,7 @@
 "use server";
 
 import { resend } from "@/lib/resend";
+import { signOut } from "@/lib/auth";
 
 export async function sendContactMessage(values: {
   name: string;
@@ -22,4 +23,8 @@ export async function sendContactMessage(values: {
   }
 
   return { success: true };
+}
+
+export async function handleSignOut() {
+  await signOut();
 }

@@ -11,7 +11,10 @@ export default function Section({
 }: SectionProps) {
   return (
     <section
-      className={cn("text-foreground py-2xl w-full flex-1 bg-none", className)}
+      className={cn(
+        "text-foreground py-xl sm:py-2xl w-full flex-1 bg-none",
+        className,
+      )}
       {...props}
     >
       {children}

@@ -21,8 +21,10 @@ export default async function Page() {
       {links.length > 0 ? (
         <>
           <div className="flex items-end justify-between">
-            <Headline>Your Links</Headline>
-            <CreateLinkDialog label="Create Link" />
+            <Headline className="gap-x-xs flex">
+              Your Links <span className="text-sm">({links.length})</span>
+            </Headline>
+            <CreateLinkDialog className="w-fit" label="Create Link" />
           </div>
           <ul className="border-b-outline flex flex-col border-b border-dotted">
             {links.map((l) => (

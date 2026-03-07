@@ -3,7 +3,7 @@ export default function TrashIcon() {
     <svg
       viewBox="0 0 22 21"
       xmlns="http://www.w3.org/2000/svg"
-      className="size-sm fill-none stroke-current"
+      className="size-sm mb-px fill-none stroke-current"
     >
       <path
         d="M6.55554 5.14239L6.55554 3.4709C6.55554 2.30611 6.55554 1.72371 6.94378 1.36186C7.33202 1 7.95689 1 9.20661 1L12.7934 1C14.0431 1 14.668 1 15.0562 1.36186C15.4444 1.72371 15.4444 2.30611 15.4444 3.4709V5.14239"

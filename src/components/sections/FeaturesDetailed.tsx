@@ -6,7 +6,7 @@ import FeatureModule from "../FeatureModule";
 
 export default function FeaturesDetailedSection() {
   return (
-    <Section className="gap-y-xl border-t-outline mx-auto flex max-w-250 flex-col border-t border-dashed">
+    <Section className="gap-y-2xl px-sm border-t-outline mx-auto flex max-w-250 flex-col border-t border-dashed lg:px-0">
       <header className="gap-y-xs flex flex-col">
         <Heading label="The Redirect Engine for Modern Teams" />
         <Headline>Platform Capabilities</Headline>
@@ -17,7 +17,7 @@ export default function FeaturesDetailedSection() {
         </p>
       </header>
 
-      <ul className="gap-y-xl flex flex-col">
+      <ul className="gap-y-2xl sm:gap-y-xl flex flex-col">
         {FEATURED_MODULES.map((e, idx) => (
           <FeatureModule isReversed={idx % 2 !== 0} {...e} key={e.title} />
         ))}

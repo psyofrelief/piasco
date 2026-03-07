@@ -1,10 +1,8 @@
-// src/components/ui/VerifyButton.tsx
 "use client";
 import { useState } from "react";
 import { sendVerificationEmail } from "@/app/auth/actions";
 import Button from "./Button";
 
-// Define the interface here
 interface VerifyButtonProps {
   email: string;
 }

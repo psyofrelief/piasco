@@ -16,7 +16,7 @@ interface Props {
 
 export default function LinkCard({ slug, destination, clicks, id }: Props) {
   return (
-    <li className="p-sm border-outline bg-popover flex items-center justify-between border border-dotted border-b-transparent">
+    <li className="p-sm border-outline bg-popover gap-y-md flex flex-col justify-between border border-dotted border-b-transparent sm:flex-row sm:items-center">
       <div className="gap-x-sm flex items-center">
         <div className="bg-foreground/40 aspect-square size-9" />
         <div className="gap-y-xs flex flex-col">
@@ -28,17 +28,19 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
           >
             {process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/{slug}
           </a>
-          <p className="text-foreground leading-none">{destination}</p>
+          <p className="text-foreground text-xs leading-none sm:text-sm">
+            {destination}
+          </p>
         </div>
       </div>
       <div className="gap-x-md text-foreground flex items-center">
-        <p className="gap-x-xs flex items-center">
+        <p className="gap-x-xs flex items-center whitespace-nowrap">
           <ClicksIcon />
           {clicks} Clicks
         </p>
         <CreateLinkDialog
           initialData={{ slug, destination }}
-          className="text-foreground bg-transparent! p-0! font-sans normal-case"
+          className="text-foreground w-fit bg-transparent! p-0! font-sans normal-case"
           icon={<EditIcon />}
         />
         <form action={deleteLink}>
@@ -46,7 +48,7 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
 
           <button
             type="submit"
-            className="hover:text-destructive hover:fill-destructive fill-foreground gap-x-xs flex cursor-pointer items-center transition-colors"
+            className="hover:text-destructive hover:fill-destructive fill-foreground gap-x-xs flex w-fit cursor-pointer items-center transition-colors"
           >
             <TrashIcon />
             Delete
@@ -54,7 +56,7 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
         </form>
 
         <Link
-          className="ml-sm"
+          className="sm:ml-sm ml-auto"
           href={`/dashboard/qr?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/${slug}`)}`}
         >
           <QrCodeIcon />

@@ -38,9 +38,11 @@ export default async function Page() {
     <Panel className="gap-y-2xl relative flex flex-col">
       <div className="gap-y-lg flex flex-col">
         <Headline>Overview</Headline>
-        <ul className="border-outline grid grid-cols-3 border border-dashed border-r-transparent">
+        <ul className="border-outline flex w-full gap-px overflow-x-auto border border-dashed lg:grid lg:grid-cols-3 lg:overflow-visible lg:border-r-transparent">
           {stats.map((stat, idx) => (
-            <StatCard {...stat} key={idx} />
+            <div key={idx} className="min-w-70 flex-none lg:min-w-0">
+              <StatCard {...stat} />
+            </div>
           ))}
         </ul>
       </div>

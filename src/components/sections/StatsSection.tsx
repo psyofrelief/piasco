@@ -6,14 +6,16 @@ import StatCard from "../StatCard";
 export default function StatsSection() {
   return (
     <div className="bg-popover flex w-full justify-center">
-      <Section className="gap-y-xl flex w-full max-w-250 flex-col items-center">
-        <Headline className="max-w-100 text-center">
+      <Section className="gap-y-xl flex w-full max-w-250 flex-col sm:items-center">
+        <Headline className="pl-sm max-w-80 sm:max-w-100 sm:pl-0 sm:text-center">
           Scale That Powers Global Connections
         </Headline>
 
-        <ul className="border-outline grid w-full grid-cols-3 border border-dashed border-r-transparent border-b-transparent">
+        <ul className="border-outline flex w-full gap-px overflow-x-auto border border-dashed lg:grid lg:grid-cols-3 lg:overflow-visible lg:border-r-transparent">
           {STATS.map((stat, idx) => (
-            <StatCard {...stat} key={idx} />
+            <div key={idx} className="min-w-70 flex-none sm:min-w-0">
+              <StatCard {...stat} />
+            </div>
           ))}
         </ul>
       </Section>

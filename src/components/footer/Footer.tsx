@@ -9,12 +9,15 @@ export default function Footer() {
       data-theme="dark"
       className="bg-background text-foreground flex w-full flex-col items-center justify-center"
     >
-      <div className="gap-x-xl py-lg px-sm border-x-outline flex w-full max-w-250 items-center border-x border-dashed">
+      <div className="gap-x-xl py-lg px-sm border-x-outline flex w-full max-w-250 items-center border-dashed sm:border-x">
         <div className="gap-x-xl flex w-full items-start justify-between">
           <Logo isFooter />
-          <ul className="gap-x-md flex w-full max-w-100 justify-between">
+          <ul className="gap-x-md gap-y-lg flex w-full max-w-100 flex-col items-end justify-between sm:flex-row">
             {FOOTER_LINKS.map((e) => (
-              <li key={e.category} className="gap-y-sm flex flex-col">
+              <li
+                key={e.category}
+                className="gap-y-sm flex flex-col items-end text-end sm:items-start sm:text-start"
+              >
                 <h2 className="text-foreground-secondary font-mono text-xs uppercase">
                   {e.category}
                 </h2>
@@ -29,7 +32,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-outline p-sm flex w-full max-w-250 items-center justify-between border border-dashed border-b-transparent!">
+      <div className="border-outline p-sm flex w-full max-w-250 items-center justify-between border-t border-dashed border-b-transparent! sm:border">
         <p>© 2026 Piasco. All Rights Reserved</p>
         <ScrollTopButton />
       </div>

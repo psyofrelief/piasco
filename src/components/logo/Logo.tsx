@@ -4,10 +4,7 @@ import LogoText from "./LogoText";
 
 export default function Logo({ isFooter = false }: { isFooter?: boolean }) {
   return (
-    <Link
-      href={"/"}
-      className={`gap-xs flex items-center ${isFooter ? "flex-col sm:flex-row" : ""}`}
-    >
+    <Link href={"/"} className="gap-xs flex items-center">
       <LogoIcon isFooter={isFooter} />
       <LogoText />
     </Link>

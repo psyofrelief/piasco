@@ -40,6 +40,13 @@ export const DASHBOARD_LINKS: DashboardCategory[] = [
   },
 ] as const;
 
+export const MOBILE_DASHBOARD_LINKS = [
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "My Links", href: "/dashboard/links" },
+  { label: "QR Generator", href: "/dashboard/qr" },
+  { label: "Settings", href: "/dashboard/settings" },
+] as const;
+
 type FooterLinkItem = {
   label: string;
   href: string;
@@ -50,6 +57,7 @@ type FooterCategory = {
   category: string;
   links: FooterLinkItem[];
 };
+
 export const FOOTER_LINKS: FooterCategory[] = [
   {
     category: "Sitemap",

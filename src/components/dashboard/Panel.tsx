@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import GradientImage from "../ui/GradientImage";
 
 interface Props {
   children: React.ReactNode;
@@ -8,24 +8,16 @@ interface Props {
 
 export default function Panel({ children, className = "" }: Props) {
   return (
-    <section
-      className={cn(
-        "text-foreground py-3xl size-full flex-1 bg-none px-40",
-        className,
-      )}
-    >
-      {children}
-
-      <div className="pointer-events-none absolute inset-0 z-1 flex items-end justify-center">
-        <Image
-          src="/images/gradient.webp"
-          alt=""
-          width={1000}
-          height={1000}
-          className="h-100 w-full object-bottom"
-          priority
-        />
-      </div>
-    </section>
+    <>
+      <section
+        className={cn(
+          "text-foreground sm:py-3xl py-xl px-sm sm:px-lg border-t-outline size-full flex-1 border-t border-dashed bg-none lg:border-t-transparent 2xl:px-40",
+          className,
+        )}
+      >
+        {children}
+        <GradientImage />
+      </section>
+    </>
   );
 }

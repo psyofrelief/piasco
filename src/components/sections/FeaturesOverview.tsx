@@ -6,7 +6,7 @@ import FeaturesOverviewCard from "../FeaturesOverviewCard";
 
 export default function FeaturesOverviewSection() {
   return (
-    <Section className="gap-y-xl mx-auto flex max-w-250 flex-col">
+    <Section className="gap-y-xl px-sm mx-auto flex max-w-250 flex-col lg:px-0">
       <header className="gap-y-xs flex flex-col">
         <Heading label="Our Platform" />
         <Headline>Master Your Digital Touchpoints</Headline>
@@ -16,7 +16,7 @@ export default function FeaturesOverviewSection() {
           your user journey.
         </p>
       </header>
-      <ul className="gap-x-sm grid grid-cols-4">
+      <ul className="gap-x-sm gap-y-lg grid grid-cols-2 md:grid-cols-4">
         {FEATURES_OVERVIEW.map((e, idx) => (
           <FeaturesOverviewCard key={idx} {...e} />
         ))}

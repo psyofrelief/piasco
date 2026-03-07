@@ -12,7 +12,9 @@ export default function QRGeneratorForm() {
   const [fgColor, setFgColor] = useState("#000000");
   const [bgColor, setBgColor] = useState("#ffffff");
   const [showLogo, setShowLogo] = useState(true);
-  const [customLogo, setCustomLogo] = useState<string>("/images/logo-icon.png");
+  const [customLogo, setCustomLogo] = useState<string>(
+    "/images/qr-brand-logo.webp",
+  );
   const qrRef = useRef<SVGSVGElement>(null);
 
   const searchParams = useSearchParams();
@@ -77,7 +79,7 @@ export default function QRGeneratorForm() {
   };
 
   return (
-    <div className="flex w-full justify-between gap-8">
+    <div className="flex w-full flex-col justify-between gap-8 xl:flex-row">
       <div className="gap-y-xl flex h-fit w-full flex-col">
         <div className="gap-xs flex flex-col">
           <Label htmlFor="destination">URL:</Label>
@@ -159,7 +161,7 @@ export default function QRGeneratorForm() {
           fgColor={fgColor}
           level="H"
           marginSize={4}
-          className="aspect-square h-full w-auto"
+          className="aspect-square h-auto w-full xl:h-full xl:w-auto"
           imageSettings={
             showLogo
               ? {
