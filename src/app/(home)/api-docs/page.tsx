@@ -10,7 +10,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Section className="gap-y-xl px-sm border-outline mx-auto flex max-w-250 flex-col border border-dashed border-b-transparent">
+    <Section
+      hasBackground
+      className="gap-y-xl px-sm border-outline mx-auto flex max-w-250 flex-col border border-dashed border-b-transparent"
+    >
       <header className="gap-y-xs flex flex-col">
         <Headline>API Documentation</Headline>
         <p className="text-foreground-secondary">

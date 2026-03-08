@@ -13,7 +13,7 @@ import {
   ForgotPasswordValues,
 } from "@/lib/data/schemas/authSchema";
 import Link from "next/link";
-import FadeUp from "../ui/FadeUp";
+import Reveal from "../ui/Reveal";
 
 export default function ForgotPasswordForm() {
   const {
@@ -37,10 +37,10 @@ export default function ForgotPasswordForm() {
   };
 
   return (
-    <FadeUp className="flex">
+    <Reveal className="flex">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="gap-y-md flex flex-1 flex-col"
+        className="gap-y-md reveal-item flex flex-1 flex-col"
       >
         <div className="flex flex-col gap-y-2">
           <Label htmlFor="email">Email address</Label>
@@ -65,6 +65,6 @@ export default function ForgotPasswordForm() {
           </Link>
         </div>
       </form>
-    </FadeUp>
+    </Reveal>
   );
 }

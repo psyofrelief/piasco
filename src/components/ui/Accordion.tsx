@@ -23,7 +23,7 @@ const AccordionTrigger = ({
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       className={cn(
-        "bg-popover p-sm data-[state=open]:border-b-outline! data-[state=open]:bg-popover/50 hover:stroke-accent border-outline data-[state=closed]:hover:text-accent-muted flex flex-1 cursor-pointer items-center justify-between border border-dashed border-b-transparent! text-left text-xs transition-all data-[state=closed]:font-normal data-[state=open]:border-b! data-[state=open]:border-dashed! sm:text-sm [&[data-state=open]>svg]:rotate-180",
+        "bg-popover p-sm data-[state=open]:border-b-outline! data-[state=open]:bg-popover/70 hover:stroke-accent border-outline data-[state=closed]:hover:text-accent-muted flex flex-1 cursor-pointer items-center justify-between border border-dashed border-b-transparent! text-left text-xs transition-all data-[state=closed]:font-normal data-[state=open]:border-b! data-[state=open]:border-dashed! sm:text-sm [&[data-state=open]>svg]:rotate-180",
         className,
       )}
       {...props}

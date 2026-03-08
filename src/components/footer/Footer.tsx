@@ -9,7 +9,7 @@ export default function Footer() {
       data-theme="dark"
       className="bg-background text-foreground flex w-full flex-col items-center justify-center"
     >
-      <div className="gap-x-xl py-lg px-sm border-x-outline flex w-full max-w-250 items-center border-dashed sm:border-x">
+      <div className="gap-x-xl py-lg px-sm sm:px-md border-x-outline flex w-full max-w-250 items-center border-dashed sm:border-x">
         <div className="gap-x-xl flex w-full items-start justify-between">
           <Logo isFooter />
           <ul className="gap-x-md gap-y-lg flex w-full max-w-100 flex-col items-end justify-between sm:flex-row">
@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-outline p-sm flex w-full max-w-250 items-center justify-between border-t border-dashed border-b-transparent! sm:border">
+      <div className="border-outline p-sm md:px-md flex w-full max-w-250 items-center justify-between border-t border-dashed border-b-transparent! sm:border">
         <p>© 2026 Piasco. All Rights Reserved</p>
         <ScrollTopButton />
       </div>

@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import GradientImage from "../ui/GradientImage";
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +15,6 @@ export default function Panel({ children, className = "" }: Props) {
         )}
       >
         {children}
-        <GradientImage />
       </section>
     </>
   );

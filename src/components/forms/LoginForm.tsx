@@ -13,7 +13,7 @@ import GoogleIcon from "../icons/GoogleIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/app/auth/actions";
-import FadeUp from "../ui/FadeUp";
+import Reveal from "../ui/Reveal";
 
 export default function LoginForm() {
   const {
@@ -43,10 +43,10 @@ export default function LoginForm() {
   };
 
   return (
-    <FadeUp className="flex">
+    <Reveal className="flex">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="gap-y-md flex flex-1 flex-col"
+        className="gap-y-md reveal-item flex flex-1 flex-col"
       >
         <div className="gap-y-xs flex flex-col">
           <Label htmlFor="email">Email *</Label>
@@ -110,6 +110,6 @@ export default function LoginForm() {
           </Link>
         </div>
       </form>
-    </FadeUp>
+    </Reveal>
   );
 }

@@ -2,12 +2,14 @@ import Headline from "../ui/Headline";
 import Section from "../ui/Section";
 import Link from "next/link";
 import Button from "../ui/Button";
-import GradientImage from "../ui/GradientImage";
 import FadeUp from "../ui/FadeUp";
 
 export default function CtaSection() {
   return (
-    <Section className="border-outline gap-y-lg relative mx-auto flex min-h-120 max-w-250 flex-col items-center justify-center border border-dashed border-b-transparent! sm:min-h-150">
+    <Section
+      hasBackground
+      className="border-outline gap-y-lg relative mx-auto flex min-h-120 max-w-250 flex-col items-center justify-center border border-dashed border-b-transparent! sm:min-h-150"
+    >
       <FadeUp
         as={"header"}
         className="gap-y-sm flex flex-col items-center text-center"
@@ -31,7 +33,6 @@ export default function CtaSection() {
           </Button>
         </Link>
       </div>
-      <GradientImage />
     </Section>
   );
 }

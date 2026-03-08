@@ -16,7 +16,7 @@ import Link from "next/link";
 import { loginUser, registerUser } from "@/app/auth/actions";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import FadeUp from "../ui/FadeUp";
+import Reveal from "../ui/Reveal";
 
 export default function RegisterForm() {
   const {
@@ -51,10 +51,10 @@ export default function RegisterForm() {
   };
 
   return (
-    <FadeUp className="flex">
+    <Reveal className="flex">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="gap-y-md flex flex-1 flex-col"
+        className="gap-y-md reveal-item flex flex-1 flex-col"
       >
         <div className="gap-y-xs flex flex-col">
           <Label htmlFor="name">Full Name *</Label>
@@ -121,6 +121,6 @@ export default function RegisterForm() {
           </div>
         </div>
       </form>
-    </FadeUp>
+    </Reveal>
   );
 }

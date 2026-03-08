@@ -99,7 +99,7 @@ export default function QRGeneratorForm() {
               value={fgColor}
               id="fgColor"
               onChange={(e) => setFgColor(e.target.value)}
-              className="border-outline p-xs h-xl w-full cursor-pointer border border-dashed bg-transparent"
+              className="border-foreground p-xs h-xl w-full cursor-pointer rounded border border-dotted bg-transparent"
             />
           </div>
           <div className="gap-xs flex flex-col">
@@ -109,7 +109,7 @@ export default function QRGeneratorForm() {
               value={bgColor}
               id="bgColor"
               onChange={(e) => setBgColor(e.target.value)}
-              className="border-outline p-xs h-xl w-full cursor-pointer border border-dashed bg-transparent"
+              className="border-foreground p-xs h-xl w-full cursor-pointer rounded border border-dotted bg-transparent"
             />
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function QRGeneratorForm() {
         <div className="gap-xs flex flex-col">
           <Label htmlFor="logoUpload">Upload custom logo:</Label>
           <div
-            className="border-outline hover:bg-popover flex min-h-32 w-full cursor-pointer flex-col items-center justify-center border border-dashed transition-colors"
+            className="border-foreground hover:bg-popover flex min-h-32 w-full cursor-pointer flex-col items-center justify-center rounded border border-dotted transition-colors"
             onClick={() => document.getElementById("logoUpload")?.click()}
           >
             <input
@@ -152,7 +152,7 @@ export default function QRGeneratorForm() {
         </Button>
       </div>
 
-      <div className="border-outline flex h-full border border-dotted">
+      <div className="border-foreground flex h-full rounded border border-dotted">
         <QRCodeSVG
           ref={qrRef}
           value={destination}

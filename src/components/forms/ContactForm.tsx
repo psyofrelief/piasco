@@ -11,7 +11,7 @@ import FormMessage from "@/components/ui/FormMessage";
 import { useState } from "react";
 import { toast } from "sonner";
 import { sendContactMessage } from "@/app/actions";
-import FadeUp from "../ui/FadeUp";
+import Reveal from "../ui/Reveal";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -56,10 +56,10 @@ export default function ContactForm() {
   }
 
   return (
-    <FadeUp className="flex w-full">
+    <Reveal className="flex w-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="gap-y-md flex w-full flex-col items-end"
+        className="gap-y-md reveal-item flex w-full flex-col items-end"
       >
         {/* Email and Name Fields */}
         <div className="gap-x-sm gap-y-md flex w-full flex-col items-center sm:flex-row">
@@ -101,6 +101,6 @@ export default function ContactForm() {
           Send Message
         </Button>
       </form>
-    </FadeUp>
+    </Reveal>
   );
 }

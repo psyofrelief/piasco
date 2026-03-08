@@ -13,7 +13,7 @@ import {
   ResetPasswordValues,
 } from "@/lib/data/schemas/authSchema";
 import { resetPasswordAction } from "@/app/auth/actions";
-import FadeUp from "../ui/FadeUp";
+import Reveal from "../ui/Reveal";
 
 export default function ResetPasswordForm() {
   const searchParams = useSearchParams();
@@ -46,10 +46,10 @@ export default function ResetPasswordForm() {
   };
 
   return (
-    <FadeUp className="flex w-full">
+    <Reveal className="flex w-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="gap-y-md flex flex-col"
+        className="gap-y-md reveal-item flex flex-col"
       >
         <div className="gap-y-xs flex flex-col">
           <Label htmlFor="password">New Password</Label>
@@ -79,6 +79,6 @@ export default function ResetPasswordForm() {
           Update Password
         </Button>
       </form>
-    </FadeUp>
+    </Reveal>
   );
 }

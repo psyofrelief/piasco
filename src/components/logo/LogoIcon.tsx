@@ -7,7 +7,7 @@ export default function LogoIcon({ isFooter = false }: { isFooter?: boolean }) {
       width="33"
       height="33"
       fill="none"
-      className={cn("rounded-xs", isFooter ? "border-outline border" : "")}
+      className={cn("rounded", isFooter ? "border-outline border" : "")}
     >
       <g clipPath="url(#a)">
         <path fill="#1A1A1A" d="M0 0h33v33H0z" />

@@ -81,7 +81,9 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <MenuProvider>
             <GSAPInitialiser />
-            <main className="flex min-h-screen flex-col">{children}</main>
+            <main className="flex min-h-screen flex-col overflow-x-clip">
+              {children}
+            </main>
             <Toaster />
 
             <MenuOverlay />
