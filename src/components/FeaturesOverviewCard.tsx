@@ -13,14 +13,16 @@ export default function FeaturesOverviewCard({
 }: Props) {
   return (
     <li className="gap-y-xs flex flex-col">
-      <Image
-        priority
-        loading="eager"
-        height={256}
-        width={512}
-        src={imgSrc}
-        alt="Feature Image"
-      />
+      <div className="relative aspect-video w-full overflow-hidden">
+        <Image
+          priority
+          loading="eager"
+          fill
+          className="object-cover"
+          src={imgSrc}
+          alt={title}
+        />
+      </div>
       <div className="flex flex-col">
         <p className="font-semibold">{title}</p>
         <p className="text-xs leading-tight sm:text-sm">{description}</p>

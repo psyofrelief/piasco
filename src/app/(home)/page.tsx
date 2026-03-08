@@ -8,7 +8,7 @@ import TestimonialSection from "@/components/sections/TestimonialSection";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center">
+    <>
       <HeroSection />
       <FeaturesOverviewSection />
       <FeaturesDetailedSection />
@@ -16,6 +16,6 @@ export default function Home() {
       <TestimonialSection />
       <FaqsSection />
       <CtaSection />
-    </main>
+    </>
   );
 }

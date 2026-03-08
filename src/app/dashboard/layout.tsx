@@ -16,7 +16,7 @@ export default async function DashboardLayout({
       <Sidebar />
 
       <DashboardClientWrapper>
-        <main className="flex min-w-0 flex-1 flex-col">{children}</main>
+        <div className="flex min-w-0 flex-1 flex-col">{children}</div>
       </DashboardClientWrapper>
     </div>
   );

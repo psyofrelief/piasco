@@ -13,6 +13,7 @@ import {
   ResetPasswordValues,
 } from "@/lib/data/schemas/authSchema";
 import { resetPasswordAction } from "@/app/auth/actions";
+import FadeUp from "../ui/FadeUp";
 
 export default function ResetPasswordForm() {
   const searchParams = useSearchParams();
@@ -45,32 +46,39 @@ export default function ResetPasswordForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6">
-      <div className="flex flex-col gap-y-2">
-        <Label htmlFor="password">New Password</Label>
-        <Input
-          {...register("password")}
-          placeholder="************"
-          type="password"
-        />
-        {errors.password && (
-          <FormMessage>{errors.password.message as string}</FormMessage>
-        )}
-      </div>
-      <div className="flex flex-col gap-y-2">
-        <Label htmlFor="confirmPassword">Confirm Password</Label>
-        <Input
-          {...register("confirmPassword")}
-          placeholder="Confirm new password"
-          type="password"
-        />
-        {errors.confirmPassword && (
-          <FormMessage>{errors.confirmPassword.message as string}</FormMessage>
-        )}
-      </div>
-      <Button type="submit" isLoading={isSubmitting} className="w-full">
-        Update Password
-      </Button>
-    </form>
+    <FadeUp className="flex w-full">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="gap-y-md flex flex-col"
+      >
+        <div className="gap-y-xs flex flex-col">
+          <Label htmlFor="password">New Password</Label>
+          <Input
+            {...register("password")}
+            placeholder="************"
+            type="password"
+          />
+          {errors.password && (
+            <FormMessage>{errors.password.message as string}</FormMessage>
+          )}
+        </div>
+        <div className="gap-y-xs flex flex-col">
+          <Label htmlFor="confirmPassword">Confirm Password</Label>
+          <Input
+            {...register("confirmPassword")}
+            placeholder="Confirm new password"
+            type="password"
+          />
+          {errors.confirmPassword && (
+            <FormMessage>
+              {errors.confirmPassword.message as string}
+            </FormMessage>
+          )}
+        </div>
+        <Button type="submit" isLoading={isSubmitting} className="w-full">
+          Update Password
+        </Button>
+      </form>
+    </FadeUp>
   );
 }

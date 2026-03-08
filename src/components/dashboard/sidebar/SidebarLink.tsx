@@ -18,7 +18,7 @@ export default function SidebarLink({ href, label, icon }: Props) {
   return (
     <li className="flex">
       <Link
-        className={`p-sm gap-x-sm flex flex-1 items-center font-mono uppercase transition-colors ${
+        className={`p-sm gap-x-sm flex flex-1 items-center rounded font-mono uppercase transition-colors ${
           isActive ? "bg-popover" : "hover:bg-popover/50 bg-transparent"
         }`}
         href={href}

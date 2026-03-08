@@ -13,6 +13,7 @@ import GoogleIcon from "../icons/GoogleIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/app/auth/actions";
+import FadeUp from "../ui/FadeUp";
 
 export default function LoginForm() {
   const {
@@ -42,68 +43,73 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6">
-      <div className="flex flex-col gap-y-2">
-        <Label htmlFor="email">Email *</Label>
-        <Input
-          {...register("email")}
-          id="email"
-          type="email"
-          placeholder="example@gmail.com"
-        />
-        {errors.email && <FormMessage>{errors.email.message}</FormMessage>}
-      </div>
-
-      <div className="flex flex-col gap-y-2">
-        <Label htmlFor="password">Password *</Label>
-        <Input
-          {...register("password")}
-          id="password"
-          type="password"
-          placeholder="*************"
-        />
-        {errors.password && (
-          <FormMessage>{errors.password.message}</FormMessage>
-        )}
-      </div>
-
-      <div className="gap-x-xs flex items-center">
-        <input
-          type="checkbox"
-          id="remember"
-          className="size-4 cursor-pointer"
-        />
-        <Label
-          htmlFor="remember"
-          className="text-foreground-secondary cursor-pointer text-sm font-normal"
-        >
-          Keep me logged in on this device
-        </Label>
-      </div>
-
-      <div className="gap-y-md flex w-full flex-col items-center">
-        <div className="gap-x-xs flex w-full">
-          <Button type="submit" isLoading={isSubmitting} className="w-full">
-            Log In
-          </Button>
-          <Button
-            variant="outline"
-            type="button"
-            className="gap-x-sm w-full"
-            onClick={handleGoogleLogin}
-          >
-            <GoogleIcon />
-            Sign in with Google
-          </Button>
+    <FadeUp className="flex">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="gap-y-md flex flex-1 flex-col"
+      >
+        <div className="gap-y-xs flex flex-col">
+          <Label htmlFor="email">Email *</Label>
+          <Input
+            {...register("email")}
+            id="email"
+            type="email"
+            placeholder="example@gmail.com"
+          />
+          {errors.email && <FormMessage>{errors.email.message}</FormMessage>}
         </div>
 
-        <Link
-          href="/auth/forgot-password"
-          className="text-foreground-secondary w-fit text-sm hover:underline"
-        >
-          I forgot my password
-        </Link>
-      </div>
-    </form>
+        <div className="gap-y-xs flex flex-col">
+          <Label htmlFor="password">Password *</Label>
+          <Input
+            {...register("password")}
+            id="password"
+            type="password"
+            placeholder="*************"
+          />
+          {errors.password && (
+            <FormMessage>{errors.password.message}</FormMessage>
+          )}
+        </div>
+
+        <div className="gap-x-xs flex items-center">
+          <input
+            type="checkbox"
+            id="remember"
+            className="size-4 cursor-pointer"
+          />
+          <Label
+            htmlFor="remember"
+            className="text-foreground-secondary cursor-pointer text-sm font-normal"
+          >
+            Keep me logged in on this device
+          </Label>
+        </div>
+
+        <div className="gap-y-md flex w-full flex-col items-center">
+          <div className="gap-x-xs flex w-full">
+            <Button type="submit" isLoading={isSubmitting} className="w-full">
+              Log In
+            </Button>
+            <Button
+              variant="outline"
+              type="button"
+              className="gap-x-sm w-full"
+              onClick={handleGoogleLogin}
+            >
+              <GoogleIcon />
+              Sign in with Google
+            </Button>
+          </div>
+
+          <Link
+            href="/auth/forgot-password"
+            className="text-foreground-secondary w-fit text-sm hover:underline"
+          >
+            I forgot my password
+          </Link>
+        </div>
+      </form>
+    </FadeUp>
   );
 }

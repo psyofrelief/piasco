@@ -6,6 +6,7 @@ import Headline from "@/components/ui/Headline";
 import LinkCard from "@/components/dashboard/LinkCard";
 import NoLinks from "@/components/dashboard/NoLinks";
 import CreateLinkDialog from "@/components/forms/CreateLinkDialog";
+import FadeUp from "@/components/ui/FadeUp";
 
 export default async function Page() {
   const session = await auth();
@@ -26,7 +27,10 @@ export default async function Page() {
             </Headline>
             <CreateLinkDialog className="w-fit" label="Create Link" />
           </div>
-          <ul className="border-b-outline flex flex-col border-b border-dotted">
+          <FadeUp
+            as={"ul"}
+            className="border-b-outline flex flex-col border-b border-dotted"
+          >
             {links.map((l) => (
               <LinkCard
                 id={l.id}
@@ -36,7 +40,7 @@ export default async function Page() {
                 key={l.id}
               />
             ))}
-          </ul>
+          </FadeUp>
         </>
       ) : (
         <NoLinks />

@@ -22,7 +22,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        "gap-x-sm px-sm py-xs flex size-fit cursor-pointer items-center justify-center font-mono text-xs tracking-normal whitespace-nowrap uppercase transition-all",
+        "gap-x-sm px-sm py-xs flex size-fit cursor-pointer items-center justify-center rounded font-mono text-xs tracking-normal whitespace-nowrap uppercase transition-all",
         variants[variant],
         isLoading && "cursor-not-allowed opacity-50",
         className,

@@ -13,6 +13,7 @@ import {
   ForgotPasswordValues,
 } from "@/lib/data/schemas/authSchema";
 import Link from "next/link";
+import FadeUp from "../ui/FadeUp";
 
 export default function ForgotPasswordForm() {
   const {
@@ -36,29 +37,34 @@ export default function ForgotPasswordForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6">
-      <div className="flex flex-col gap-y-2">
-        <Label htmlFor="email">Email address</Label>
-        <Input
-          {...register("email")}
-          id="email"
-          type="email"
-          placeholder="example@domain.com"
-        />
-        {errors.email && <FormMessage>{errors.email.message}</FormMessage>}
-      </div>
+    <FadeUp className="flex">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="gap-y-md flex flex-1 flex-col"
+      >
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="email">Email address</Label>
+          <Input
+            {...register("email")}
+            id="email"
+            type="email"
+            placeholder="example@domain.com"
+          />
+          {errors.email && <FormMessage>{errors.email.message}</FormMessage>}
+        </div>
 
-      <div className="gap-y-md flex w-full flex-col items-center">
-        <Button type="submit" isLoading={isSubmitting} className="w-full">
-          Send reset link
-        </Button>
-        <Link
-          className="text-foreground-secondary hover:text-accent-muted underline underline-offset-3 transition-colors"
-          href={"/auth/login"}
-        >
-          Back to login
-        </Link>
-      </div>
-    </form>
+        <div className="gap-y-md flex w-full flex-col items-center">
+          <Button type="submit" isLoading={isSubmitting} className="w-full">
+            Send reset link
+          </Button>
+          <Link
+            className="text-foreground-secondary hover:text-accent-muted underline underline-offset-3 transition-colors"
+            href={"/auth/login"}
+          >
+            Back to login
+          </Link>
+        </div>
+      </form>
+    </FadeUp>
   );
 }

@@ -7,7 +7,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="grid h-screen grid-cols-1 xl:grid-cols-2">
+    <div className="grid h-screen grid-cols-1 xl:grid-cols-2">
       <div className="gap-y-xl md:p-3xl p-sm flex flex-col">
         <Logo />
 
@@ -22,6 +22,6 @@ export default function AuthLayout({
           priority
         />
       </div>
-    </main>
+    </div>
   );
 }

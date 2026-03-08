@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import Headline from "./ui/Headline";
+import FadeUp from "./ui/FadeUp";
 
 interface Props {
   title: string;
@@ -35,12 +36,12 @@ export default function FeatureModule({
 
       {/* Content Container */}
       <div className="gap-y-md flex flex-col">
-        <header className="gap-y-xs flex flex-col">
+        <FadeUp as={"header"} className="gap-y-xs flex flex-col">
           <Headline>{title}</Headline>
           <p className="text-foreground-secondary leading-tight">
             {description}
           </p>
-        </header>
+        </FadeUp>
 
         {hasCta && (
           <Link href="/auth/register" className="flex size-fit">

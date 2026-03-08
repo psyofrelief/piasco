@@ -6,6 +6,7 @@ import { MenuProvider } from "@/contexts/menuContext";
 import MenuOverlay from "@/components/menu/MenuOverlay";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/lib/auth";
+import GSAPInitialiser from "@/lib/gsapInitialiser";
 
 const familjenGrotesk = Familjen_Grotesk({
   variable: "--font-familjen-grotesk",
@@ -36,7 +37,8 @@ export default async function RootLayout({
       >
         <SessionProvider session={session}>
           <MenuProvider>
-            <main className="flex flex-col">{children}</main>
+            <GSAPInitialiser />
+            <main className="flex min-h-screen flex-col">{children}</main>
             <Toaster />
 
             <MenuOverlay />

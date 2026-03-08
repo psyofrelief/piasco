@@ -16,6 +16,7 @@ import Link from "next/link";
 import { registerUser } from "@/app/auth/actions";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import FadeUp from "../ui/FadeUp";
 
 export default function RegisterForm() {
   const {
@@ -45,66 +46,71 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6">
-      <div className="flex flex-col gap-y-2">
-        <Label htmlFor="name">Full Name *</Label>
-        <Input {...register("name")} id="name" placeholder="Mark Smith" />
-        {errors.name && <FormMessage>{errors.name.message}</FormMessage>}
-      </div>
-
-      <div className="flex flex-col gap-y-2">
-        <Label htmlFor="email">Email *</Label>
-        <Input
-          {...register("email")}
-          id="email"
-          type="email"
-          placeholder="example@gmail.com"
-        />
-        {errors.email && <FormMessage>{errors.email.message}</FormMessage>}
-      </div>
-
-      <div className="flex flex-col gap-y-2">
-        <Label htmlFor="password">Password *</Label>
-        <Input
-          {...register("password")}
-          id="password"
-          type="password"
-          placeholder="*************"
-        />
-        {errors.password && (
-          <FormMessage>{errors.password.message}</FormMessage>
-        )}
-      </div>
-
-      <div className="gap-x-xs flex items-center">
-        <input
-          type="checkbox"
-          id="agreeTerms"
-          className="size-4 cursor-pointer"
-          required
-        />
-        <Label
-          htmlFor="agreeTerms"
-          className="text-foreground-secondary cursor-pointer text-sm font-normal"
-        >
-          I have read and agreed to Piasco`s{" "}
-          <span className="underline">
-            <Link href={"/terms-of-service"}>terms and conditions.</Link>
-          </span>
-        </Label>
-      </div>
-
-      <div className="gap-y-sm flex w-full flex-col">
-        <div className="gap-x-xs flex w-full">
-          <Button type="submit" isLoading={isSubmitting} className="w-full">
-            Register
-          </Button>
-          <Button variant="outline" type="button" className="gap-x-sm w-full">
-            <GoogleIcon />
-            Sign up with Google
-          </Button>
+    <FadeUp className="flex">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="gap-y-md flex flex-1 flex-col"
+      >
+        <div className="gap-y-xs flex flex-col">
+          <Label htmlFor="name">Full Name *</Label>
+          <Input {...register("name")} id="name" placeholder="Mark Smith" />
+          {errors.name && <FormMessage>{errors.name.message}</FormMessage>}
         </div>
-      </div>
-    </form>
+
+        <div className="gap-y-xs flex flex-col">
+          <Label htmlFor="email">Email *</Label>
+          <Input
+            {...register("email")}
+            id="email"
+            type="email"
+            placeholder="example@gmail.com"
+          />
+          {errors.email && <FormMessage>{errors.email.message}</FormMessage>}
+        </div>
+
+        <div className="gap-y-xs flex flex-col">
+          <Label htmlFor="password">Password *</Label>
+          <Input
+            {...register("password")}
+            id="password"
+            type="password"
+            placeholder="*************"
+          />
+          {errors.password && (
+            <FormMessage>{errors.password.message}</FormMessage>
+          )}
+        </div>
+
+        <div className="gap-x-xs flex items-center">
+          <input
+            type="checkbox"
+            id="agreeTerms"
+            className="size-4 cursor-pointer"
+            required
+          />
+          <Label
+            htmlFor="agreeTerms"
+            className="text-foreground-secondary cursor-pointer text-sm font-normal"
+          >
+            I have read and agreed to Piasco`s{" "}
+            <span className="underline">
+              <Link href={"/terms-of-service"}>terms and conditions.</Link>
+            </span>
+          </Label>
+        </div>
+
+        <div className="gap-y-sm flex w-full flex-col">
+          <div className="gap-x-xs flex w-full">
+            <Button type="submit" isLoading={isSubmitting} className="w-full">
+              Register
+            </Button>
+            <Button variant="outline" type="button" className="gap-x-sm w-full">
+              <GoogleIcon />
+              Sign up with Google
+            </Button>
+          </div>
+        </div>
+      </form>
+    </FadeUp>
   );
 }

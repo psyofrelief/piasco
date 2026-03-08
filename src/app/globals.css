@@ -22,6 +22,7 @@
     --background: 0 0% 4%;
     --foreground: 0 0% 96%;
     --foreground-secondary: 0 0% 60%;
+
     --outline: 0 0% 25%;
   }
 }
@@ -60,8 +61,8 @@
   --spacing-screen-minus-navbar-mobile: calc(100dvh - 65px);
   --spacing-stats-width: calc(100vw - 32px);
 
-  --radius-sm: 8px;
-  --radius-md: 16px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
 
   --font-mono: var(--font-fragment-mono), monospace;
   --font-display: var(--font-familjen-grotesk), monospace;

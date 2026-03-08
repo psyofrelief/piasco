@@ -11,6 +11,7 @@ import NoLinks from "@/components/dashboard/NoLinks";
 import LinkIcon from "@/components/icons/LinkIcon";
 import ClickIcon from "@/components/icons/ClickIcon";
 import CTRIcon from "@/components/icons/CTRIcon";
+import FadeUp from "@/components/ui/FadeUp";
 
 export default async function Page() {
   const session = await auth();
@@ -58,7 +59,10 @@ export default async function Page() {
               </Button>
             </Link>
           </div>
-          <ul className="border-b-outline flex flex-col border-b border-dotted">
+          <FadeUp
+            as={"ul"}
+            className="border-b-outline flex flex-col border-b border-dotted"
+          >
             {links.map((l) => (
               <LinkCard
                 id={l.id}
@@ -68,7 +72,7 @@ export default async function Page() {
                 key={l.id}
               />
             ))}
-          </ul>
+          </FadeUp>
         </div>
       ) : (
         <NoLinks />

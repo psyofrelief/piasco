@@ -11,6 +11,7 @@ import FormMessage from "@/components/ui/FormMessage";
 import { useState } from "react";
 import { toast } from "sonner";
 import { sendContactMessage } from "@/app/actions";
+import FadeUp from "../ui/FadeUp";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -55,47 +56,51 @@ export default function ContactForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="gap-y-md flex w-full flex-col items-end"
-    >
-      {/* Email and Name Fields */}
-      <div className="gap-x-sm gap-y-md flex w-full flex-col items-center sm:flex-row">
+    <FadeUp className="flex w-full">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="gap-y-md flex w-full flex-col items-end"
+      >
+        {/* Email and Name Fields */}
+        <div className="gap-x-sm gap-y-md flex w-full flex-col items-center sm:flex-row">
+          <div className="gap-y-xs flex w-full flex-col">
+            <Label htmlFor="firstname">Name</Label>
+            <Input
+              id="firstname"
+              placeholder="John Appleseed"
+              {...register("name")}
+            />
+            {errors.name && <FormMessage>{errors.name.message}</FormMessage>}
+          </div>
+
+          <div className="gap-y-xs flex w-full flex-col">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              type="email"
+              id="email"
+              placeholder="example@gmail.com"
+              {...register("email")}
+            />
+            {errors.email && <FormMessage>{errors.email.message}</FormMessage>}
+          </div>
+        </div>
+        {/* Message Field */}
         <div className="gap-y-xs flex w-full flex-col">
-          <Label htmlFor="firstname">Name</Label>
-          <Input
-            id="firstname"
-            placeholder="John Appleseed"
-            {...register("name")}
+          <Label htmlFor="message">Message</Label>
+          <TextArea
+            id="message"
+            placeholder="Add your message"
+            {...register("message")}
           />
-          {errors.name && <FormMessage>{errors.name.message}</FormMessage>}
+          {errors.message && (
+            <FormMessage>{errors.message.message}</FormMessage>
+          )}
         </div>
 
-        <div className="gap-y-xs flex w-full flex-col">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            type="email"
-            id="email"
-            placeholder="example@gmail.com"
-            {...register("email")}
-          />
-          {errors.email && <FormMessage>{errors.email.message}</FormMessage>}
-        </div>
-      </div>
-      {/* Message Field */}
-      <div className="gap-y-xs flex w-full flex-col">
-        <Label htmlFor="message">Message</Label>
-        <TextArea
-          id="message"
-          placeholder="Add your message"
-          {...register("message")}
-        />
-        {errors.message && <FormMessage>{errors.message.message}</FormMessage>}
-      </div>
-
-      <Button isLoading={isSubmitting} type="submit" className="mt-auto">
-        Send Message
-      </Button>
-    </form>
+        <Button isLoading={isSubmitting} type="submit" className="mt-auto">
+          Send Message
+        </Button>
+      </form>
+    </FadeUp>
   );
 }

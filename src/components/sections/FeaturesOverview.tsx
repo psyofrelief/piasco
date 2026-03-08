@@ -3,6 +3,7 @@ import Heading from "../ui/Heading";
 import Headline from "../ui/Headline";
 import Section from "../ui/Section";
 import FeaturesOverviewCard from "../FeaturesOverviewCard";
+import FadeUp from "../ui/FadeUp";
 
 export default function FeaturesOverviewSection() {
   return (
@@ -16,11 +17,14 @@ export default function FeaturesOverviewSection() {
           your user journey.
         </p>
       </header>
-      <ul className="gap-x-sm gap-y-lg grid grid-cols-2 md:grid-cols-4">
+      <FadeUp
+        as={"ul"}
+        className="gap-x-sm gap-y-lg grid grid-cols-2 md:grid-cols-4"
+      >
         {FEATURES_OVERVIEW.map((e, idx) => (
           <FeaturesOverviewCard key={idx} {...e} />
         ))}
-      </ul>
+      </FadeUp>
     </Section>
   );
 }

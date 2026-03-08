@@ -1,5 +1,4 @@
 import { useMenuContext } from "@/contexts/menuContext";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 interface Props {
@@ -17,7 +16,7 @@ export default function MenuNavLink({ label, href }: Props) {
           closeMenu();
         }, 250)
       }
-      className={cn("text-2xl")}
+      className="rounded text-2xl"
     >
       <Link
         href={href}
