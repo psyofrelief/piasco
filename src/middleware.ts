@@ -5,11 +5,16 @@ import { rateLimit } from "./lib/rateLimit";
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
-  const forwarded = req.headers.get("x-forwarded-for");
-  const ip = forwarded ? forwarded.split(",")[0] : "127.0.0.1";
-
   const { pathname } = req.nextUrl;
-  if (pathname.startsWith("/auth") || pathname.startsWith("/api")) {
+  const { method } = req;
+
+  if (
+    (pathname.startsWith("/auth") || pathname.startsWith("/api")) &&
+    method === "POST"
+  ) {
+    const forwarded = req.headers.get("x-forwarded-for");
+    const ip = forwarded ? forwarded.split(",")[0] : "127.0.0.1";
+
     const isAllowed = rateLimit(ip);
     if (!isAllowed) {
       return new Response("Too many requests", { status: 429 });
@@ -40,5 +45,9 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/auth/:path*"],
+  matcher: [
+    "/dashboard/:path*",
+    "/auth/:path*",
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
 };

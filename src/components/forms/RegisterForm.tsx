@@ -13,9 +13,9 @@ import {
   type RegisterValues,
 } from "@/lib/data/schemas/authSchema";
 import Link from "next/link";
-import { registerUser } from "@/app/auth/actions";
+import { loginUser, registerUser } from "@/app/auth/actions";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import FadeUp from "../ui/FadeUp";
 
 export default function RegisterForm() {
@@ -36,9 +36,14 @@ export default function RegisterForm() {
   const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
     try {
       await registerUser(data);
-      toast.success("Account created! Please log in.");
+
+      toast.success("Account created! Redirecting...");
+
+      await loginUser(data);
+
       await update();
-      router.push("/auth/login");
+
+      router.push("/auth/verify");
     } catch (error: unknown) {
       if (error instanceof Error) toast.error(error.message);
       else toast.error("An unexpected error occurred");
@@ -104,7 +109,12 @@ export default function RegisterForm() {
             <Button type="submit" isLoading={isSubmitting} className="w-full">
               Register
             </Button>
-            <Button variant="outline" type="button" className="gap-x-sm w-full">
+            <Button
+              onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+              variant="outline"
+              type="button"
+              className="gap-x-sm w-full"
+            >
               <GoogleIcon />
               Sign up with Google
             </Button>
