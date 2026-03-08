@@ -19,6 +19,7 @@ export default function AuthLayout({
           alt="Auth Page Image"
           fill
           className="object-cover"
+          loading="eager"
           priority
         />
       </div>
