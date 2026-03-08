@@ -1,0 +1,16 @@
+export default function LinkMissingIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 18"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-at=uto stroke-accent w-lg fill-none"
+    >
+      <path
+        d="M6 9H10M10 9L6 5M10 9L18 17M13 5H15C17.2091 5 19 6.79086 19 9C19 10.1947 18.4759 11.2671 17.6455 12M7 13H5C2.79086 13 1 11.2091 1 9C1 6.79086 2.79086 5 5 5H6M6 5L2 1"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
