@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Logo from "@/components/logo/Logo";
 import Image from "next/image";
+import { BASE_64_BG } from "@/lib/data/base64";
 
 export default function AuthLayout({
   children,
@@ -27,9 +28,11 @@ export default function AuthLayout({
           alt="Auth Page Image"
           fill
           priority
+          placeholder="blur"
+          blurDataURL={BASE_64_BG}
           onLoad={() => setLoaded(true)}
-          className={`object-cover transition-all duration-250 ease-in-out ${
-            loaded ? "blur-0 opacity-100" : "opacity-0 blur-xl"
+          className={`object-cover transition-all duration-700 ease-in-out ${
+            loaded ? "blur-0 opacity-100" : "opacity-100 blur-lg"
           }`}
         />
       </div>
