@@ -1,12 +1,22 @@
 import NextAuth from "next-auth";
 import { authConfig } from "./lib/auth.config";
+import { rateLimit } from "./lib/rateLimit";
 
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
-  const { pathname } = req.nextUrl;
-  const isLoggedIn = !!req.auth;
+  const forwarded = req.headers.get("x-forwarded-for");
+  const ip = forwarded ? forwarded.split(",")[0] : "127.0.0.1";
 
+  const { pathname } = req.nextUrl;
+  if (pathname.startsWith("/auth") || pathname.startsWith("/api")) {
+    const isAllowed = rateLimit(ip);
+    if (!isAllowed) {
+      return new Response("Too many requests", { status: 429 });
+    }
+  }
+
+  const isLoggedIn = !!req.auth;
   const isVerified = !!req.auth?.user?.emailVerified;
   const isOAuthUser = !req.auth?.user?.hasPassword;
 

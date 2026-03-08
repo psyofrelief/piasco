@@ -125,7 +125,8 @@ exports.Prisma.LinkScalarFieldEnum = {
   userId: 'userId',
   slug: 'slug',
   destination: 'destination',
-  clicks: 'clicks'
+  clicks: 'clicks',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {
@@ -150,6 +151,14 @@ exports.Prisma.SessionScalarFieldEnum = {
   expires: 'expires'
 };
 
+exports.Prisma.ApiKeyScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  name: 'name',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -170,7 +179,8 @@ exports.Prisma.PasswordResetTokenScalarFieldEnum = {
   id: 'id',
   email: 'email',
   token: 'token',
-  expires: 'expires'
+  expires: 'expires',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -193,6 +203,7 @@ exports.Prisma.ModelName = {
   Link: 'Link',
   Account: 'Account',
   Session: 'Session',
+  ApiKey: 'ApiKey',
   User: 'User',
   VerificationToken: 'VerificationToken',
   PasswordResetToken: 'PasswordResetToken'

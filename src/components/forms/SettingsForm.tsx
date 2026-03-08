@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -12,7 +13,7 @@ import Label from "@/components/ui/Label";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import FormMessage from "@/components/ui/FormMessage";
-import { updateUser } from "@/app/dashboard/actions";
+import { updateUser, createApiKeyAction } from "@/app/dashboard/actions";
 import { cn } from "@/lib/utils";
 
 interface SettingsFormProps {
@@ -20,10 +21,14 @@ interface SettingsFormProps {
     name?: string | null;
     email?: string | null;
     hasPassword?: boolean;
+    hasApiKey?: boolean;
   };
 }
+
 export default function SettingsForm({ user }: SettingsFormProps) {
   const hasPassword = user?.hasPassword;
+  const [plainKey, setPlainKey] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const {
     register,
@@ -37,6 +42,19 @@ export default function SettingsForm({ user }: SettingsFormProps) {
       isOAuth: !hasPassword,
     },
   });
+
+  async function handleGenerateKey() {
+    setIsGenerating(true);
+    try {
+      const res = await createApiKeyAction();
+      setPlainKey(res.plainKey);
+      toast.success("New API key generated. Save it somewhere safe!");
+    } catch (err) {
+      toast.error("Failed to generate API key");
+    } finally {
+      setIsGenerating(false);
+    }
+  }
 
   async function onSubmit(values: SettingsValues) {
     if (!hasPassword) {
@@ -55,7 +73,6 @@ export default function SettingsForm({ user }: SettingsFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="gap-y-xl flex flex-col">
-      {/* Profile Section */}
       <div
         className={cn(
           "gap-y-lg flex flex-col",
@@ -79,16 +96,12 @@ export default function SettingsForm({ user }: SettingsFormProps) {
           />
         </SettingRow>
       </div>
-
-      {/* Divider with Header */}
       <header className="pt-xl border-outline gap-y-xs flex flex-col border-t border-dashed">
-        <h3 className="text-md leading-none font-semibold">Security</h3>
+        <h3 className="text-md leading-none font-semibold">Security & API</h3>
         <p className="text-foreground-secondary text-sm">
-          Manage your password and authentication methods.
+          Manage your password and API access tokens.
         </p>
       </header>
-
-      {/* Password Section */}
       <div
         className={cn(
           "gap-y-lg flex flex-col",
@@ -121,7 +134,47 @@ export default function SettingsForm({ user }: SettingsFormProps) {
           />
         </SettingRow>
       </div>
+      <div className="pt-lg border-outline border-t border-dashed">
+        <SettingRow
+          id="apiKey"
+          label="API Key"
+          description="Used for Bearer authentication in REST requests."
+        >
+          <div className="gap-x-sm gap-y-xs flex flex-col">
+            {plainKey ? (
+              <div className="gap-y-xs relative flex flex-1 flex-col">
+                <Input
+                  placeholder=""
+                  readOnly
+                  value={plainKey}
+                  className="font-mono text-xs"
+                />
 
+                <p className="text-accent-muted text-xs font-medium">
+                  Copy this key now. It will not be shown again after you leave
+                  or refresh this page.
+                </p>
+              </div>
+            ) : (
+              <p className="text-foreground-secondary py-2 text-sm italic">
+                {user?.hasApiKey
+                  ? "Key exists but is hidden for security."
+                  : "No API key generated yet."}
+              </p>
+            )}
+
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleGenerateKey}
+              isLoading={isGenerating}
+              className="shrink-0"
+            >
+              {user?.hasApiKey || plainKey ? "Regenerate" : "Generate Key"}
+            </Button>
+          </div>
+        </SettingRow>
+      </div>{" "}
       <div className="pt-md gap-y-sm flex flex-col items-end">
         {!hasPassword && (
           <p className="text-foreground-secondary text-xs italic">

@@ -65,6 +65,18 @@ export async function registerUser(values: RegisterValues) {
 }
 
 export async function requestPasswordReset(email: string) {
+  const recentToken = await prisma.passwordResetToken.findFirst({
+    where: {
+      email,
+      createdAt: { gte: new Date(Date.now() - 2 * 60 * 1000) },
+    },
+  });
+
+  if (recentToken) {
+    throw new Error(
+      "Please wait a few minutes before requesting another reset.",
+    );
+  }
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user) return { success: true };
 
@@ -92,7 +104,17 @@ export async function requestPasswordReset(email: string) {
   return { success: true };
 }
 
-export async function resetPasswordAction({ email, token, password }: any) {
+interface ResetPasswordProps {
+  email: string;
+  token: string;
+  password: string;
+}
+
+export async function resetPasswordAction({
+  email,
+  token,
+  password,
+}: ResetPasswordProps) {
   const hashedToken = createHash("sha256").update(token).digest("hex");
 
   const resetEntry = await prisma.passwordResetToken.findUnique({

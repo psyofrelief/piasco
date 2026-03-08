@@ -5,12 +5,25 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 import { SettingsValues } from "@/lib/data/schemas/settingsSchema";
+import { generateKey } from "@/lib/apiKeys";
 
 export async function upsertLink(data: { destination: string; slug?: string }) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
 
   const userId = session.user.id;
+  const ONE_MINUTE_AGO = new Date(Date.now() - 60 * 1000);
+  const recentLinksCount = await prisma.link.count({
+    where: {
+      userId,
+      createdAt: { gte: ONE_MINUTE_AGO },
+    },
+  });
+
+  if (recentLinksCount >= 5) {
+    throw new Error("Slow down! You're creating links too quickly.");
+  }
+
   const destination = data.destination;
 
   const slug = data.slug?.trim() || Math.random().toString(36).substring(2, 8);
@@ -93,4 +106,23 @@ export async function updateUser(values: SettingsValues) {
   });
 
   revalidatePath("/dashboard/settings");
+}
+
+export async function createApiKeyAction() {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Unauthorized");
+
+  const { plainKey, hashedKey } = generateKey();
+
+  await prisma.apiKey.deleteMany({ where: { userId: session.user.id } });
+
+  await prisma.apiKey.create({
+    data: {
+      key: hashedKey,
+      name: "Default Key",
+      userId: session.user.id,
+    },
+  });
+
+  return { plainKey };
 }
