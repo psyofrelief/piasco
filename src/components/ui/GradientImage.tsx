@@ -7,7 +7,7 @@ export default function GradientImage() {
         src="/images/gradient.webp"
         alt="gradient background"
         width={1000}
-        height={1000}
+        height={400}
         className="h-100 w-full object-bottom"
         loading="eager"
         priority

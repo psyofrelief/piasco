@@ -18,6 +18,7 @@ export default function CopyButton({ url }: { url: string }) {
       type="button"
       onClick={handleCopy}
       className="bg-accent/60 p-xs rounded-full"
+      aria-label="Copy URL to clipboard"
     >
       <CopyIcon />
     </button>

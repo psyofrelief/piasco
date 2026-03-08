@@ -58,6 +58,7 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
         <Link
           className="sm:ml-sm ml-auto"
           href={`/dashboard/qr?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/${slug}`)}`}
+          aria-label="Generate QR Code"
         >
           <QrCodeIcon />
         </Link>

@@ -1,6 +1,11 @@
 import ResetPasswordForm from "@/components/forms/ResetPasswordForm";
 import Headline from "@/components/ui/Headline";
 import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Reset Password",
+};
 
 export default function Page() {
   return (

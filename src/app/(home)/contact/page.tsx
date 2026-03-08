@@ -3,6 +3,11 @@ import FaqsSection from "@/components/sections/FaqsSection";
 import Headline from "@/components/ui/Headline";
 import Section from "@/components/ui/Section";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 export default function Page() {
   return (

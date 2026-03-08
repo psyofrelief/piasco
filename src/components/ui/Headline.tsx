@@ -7,13 +7,13 @@ interface Props {
 
 export default function Headline({ children, className = "" }: Props) {
   return (
-    <h1
+    <h2
       className={cn(
         "font-display text-xl leading-[1.1em] sm:text-2xl",
         className,
       )}
     >
       {children}
-    </h1>
+    </h2>
   );
 }

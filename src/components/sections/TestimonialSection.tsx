@@ -8,7 +8,7 @@ export default function TestimonialSection() {
       data-theme="dark"
       className="bg-background text-foreground flex w-full justify-center"
     >
-      <Section className="gap-x-xl gap-y-md flex w-full max-w-250 flex-col items-center md:flex-row">
+      <Section className="gap-x-xl nd:px-0 px-sm gap-y-md flex w-full max-w-250 flex-col items-center md:flex-row">
         <Image
           src={"/images/testimonial.webp"}
           alt="testimonial profile image"

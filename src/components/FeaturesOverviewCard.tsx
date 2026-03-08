@@ -21,6 +21,7 @@ export default function FeaturesOverviewCard({
           className="object-cover"
           src={imgSrc}
           alt={title}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
       <div className="flex flex-col">

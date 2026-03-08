@@ -2,6 +2,11 @@ import { auth } from "@/lib/auth";
 import Navbar from "@/components/navbar/Navbar";
 import Sidebar from "@/components/dashboard/sidebar/Sidebar";
 import DashboardClientWrapper from "@/components/dashboard/DashboardClientWrapper";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 export default async function DashboardLayout({
   children,

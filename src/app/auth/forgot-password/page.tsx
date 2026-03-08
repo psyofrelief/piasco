@@ -1,5 +1,10 @@
 import ForgotPasswordForm from "@/components/forms/ForgotPasswordForm";
 import Headline from "@/components/ui/Headline";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Forgot Password",
+};
 
 export default function Page() {
   return (

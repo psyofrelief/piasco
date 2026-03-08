@@ -11,13 +11,13 @@ export default function StatsSection() {
           Scale That Powers Global Connections
         </Headline>
 
-        <ul className="border-outline flex w-full gap-px overflow-x-auto border border-dashed lg:grid lg:grid-cols-3 lg:overflow-visible lg:border-r-transparent">
+        <div className="border-outline flex w-full gap-px overflow-x-auto border border-dashed lg:grid lg:grid-cols-3 lg:overflow-visible lg:border-r-transparent">
           {STATS.map((stat, idx) => (
-            <div key={idx} className="min-w-70 flex-none sm:min-w-0">
+            <ul key={idx} className="min-w-70 flex-none sm:min-w-0">
               <StatCard {...stat} />
-            </div>
+            </ul>
           ))}
-        </ul>
+        </div>
       </Section>
     </div>
   );

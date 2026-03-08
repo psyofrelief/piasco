@@ -4,6 +4,11 @@ import Headline from "@/components/ui/Headline";
 import VerifyButton from "@/components/ui/VerifyButton";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Verify Account",
+};
 
 export default async function Page({
   searchParams,
