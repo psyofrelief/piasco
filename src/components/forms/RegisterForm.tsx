@@ -95,7 +95,7 @@ export default function RegisterForm() {
           />
           <Label
             htmlFor="agreeTerms"
-            className="text-foreground-secondary cursor-pointer text-sm font-normal"
+            className="text-foreground-secondary cursor-pointer text-xs font-normal sm:text-sm"
           >
             I have read and agreed to Piasco`s{" "}
             <span className="underline">

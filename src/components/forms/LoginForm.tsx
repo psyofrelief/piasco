@@ -80,7 +80,7 @@ export default function LoginForm() {
           />
           <Label
             htmlFor="remember"
-            className="text-foreground-secondary cursor-pointer text-sm font-normal"
+            className="text-foreground-secondary cursor-pointer text-xs font-normal sm:text-sm"
           >
             Keep me logged in on this device
           </Label>
