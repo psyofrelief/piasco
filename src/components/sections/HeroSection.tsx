@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <Section
       hasBackground
-      className="border-outline gap-y-xl mx-auto flex min-h-150 flex-col items-center justify-center border-y border-dashed text-center sm:max-w-250 sm:border"
+      className="border-outline gap-y-xl px-sm mx-auto flex min-h-150 flex-col items-center justify-center border-y border-dashed text-center sm:max-w-250 sm:border md:px-0"
     >
       <FadeUp
         as={"header"}
@@ -18,7 +18,7 @@ export default function HeroSection() {
         <LogoIcon />
         <div className="gap-y-xs flex flex-col items-center">
           <Headline>Link Management, Refined.</Headline>
-          <p className="max-w-100">
+          <p className="max-w-80 sm:max-w-100">
             Generate trackable short links and custom QR codes in seconds. Built
             for speed, designed for precision.
           </p>
