@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { deleteLink } from "@/app/dashboard/actions";
 import Link from "next/link";
 import CopyButton from "./CopyButton";
@@ -15,10 +18,21 @@ interface Props {
 }
 
 export default function LinkCard({ slug, destination, clicks, id }: Props) {
+  const domain = new URL(destination).hostname;
+  const initialFavicon = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
+  const [faviconSrc, setFaviconSrc] = useState(initialFavicon);
+
   return (
     <li className="p-sm border-outline bg-popover gap-y-md flex flex-col justify-between border border-dotted border-b-transparent sm:flex-row sm:items-center">
       <div className="gap-x-sm flex items-center">
-        <div className="bg-foreground/40 aspect-square size-9" />
+        <div className="border-outline flex size-10 shrink-0 items-center justify-center border border-dotted bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:4px_4px] dark:bg-[radial-gradient(#374151_1px,transparent_1px)]">
+          <img
+            src={faviconSrc}
+            alt="Favicon"
+            className="size-6 object-contain"
+            onError={() => setFaviconSrc("/images/qr-brand-logo.webp")}
+          />
+        </div>
         <div className="gap-y-xs flex flex-col">
           <a
             href={`${process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/${slug}`}
@@ -28,7 +42,7 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
           >
             {process.env.NEXT_PUBLIC_BASE_URL || "https://p-s.co"}/{slug}
           </a>
-          <p className="text-foreground text-xs leading-none sm:text-sm">
+          <p className="text-foreground line-clamp-1 max-w-62.5 text-xs leading-none sm:text-sm md:max-w-75">
             {destination}
           </p>
         </div>
@@ -45,7 +59,6 @@ export default function LinkCard({ slug, destination, clicks, id }: Props) {
         />
         <form action={deleteLink}>
           <input type="hidden" name="id" value={id} />
-
           <button
             type="submit"
             className="hover:text-destructive hover:fill-destructive fill-foreground gap-x-xs flex w-fit cursor-pointer items-center transition-colors"
