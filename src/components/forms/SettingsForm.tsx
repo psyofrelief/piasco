@@ -13,7 +13,7 @@ import Label from "@/components/ui/Label";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import FormMessage from "@/components/ui/FormMessage";
-import { updateUser, createApiKeyAction } from "@/app/dashboard/actions";
+import { updateUser, createApiKey } from "@/app/dashboard/actions";
 import { cn } from "@/lib/utils";
 
 interface SettingsFormProps {
@@ -46,7 +46,7 @@ export default function SettingsForm({ user }: SettingsFormProps) {
   async function handleGenerateKey() {
     setIsGenerating(true);
     try {
-      const res = await createApiKeyAction();
+      const res = await createApiKey();
       setPlainKey(res.plainKey);
       toast.success("New API key generated. Save it somewhere safe!");
     } catch (err) {

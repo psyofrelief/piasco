@@ -56,14 +56,20 @@ export async function upsertLink(data: { destination: string; slug?: string }) {
 }
 
 export async function deleteLink(formData: FormData) {
-  const id = formData.get("id") as string;
+  const idString = formData.get("id") as string;
+  const id = parseInt(idString);
+
+  if (isNaN(id)) {
+    throw new Error("Invalid link ID provided");
+  }
 
   await prisma.link.delete({
-    where: { id: parseInt(id) },
+    where: { id },
   });
 
   revalidatePath("/dashboard");
 }
+
 export async function getLinkBySlug(slug: string) {
   return await prisma.link.findUnique({
     where: { slug },
@@ -108,7 +114,7 @@ export async function updateUser(values: SettingsValues) {
   revalidatePath("/dashboard/settings");
 }
 
-export async function createApiKeyAction() {
+export async function createApiKey() {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
 
